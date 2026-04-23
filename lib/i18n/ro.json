@@ -1,0 +1,38 @@
+{
+  "hero": {
+    "greeting": "Dragă",
+    "countdown": {
+      "days": "zile",
+      "hours": "ore",
+      "minutes": "minute",
+      "seconds": "secunde"
+    }
+  },
+  "love_story": { "title": "Povestea noastră" },
+  "timeline": { "title": "Programul zilei" },
+  "location": {
+    "title": "Locul evenimentului",
+    "navigate": "Deschide în navigator"
+  },
+  "rsvp": {
+    "title": "Confirmați prezența",
+    "attending_yes": "Vin",
+    "attending_no": "Nu pot veni",
+    "guest_count_label": "Numărul de persoane (inclusiv dvs.)",
+    "submit": "Trimite",
+    "success": "Mulțumim! Vă așteptăm cu nerăbdare.",
+    "already_submitted": "Ați confirmat deja participarea."
+  },
+  "wishlist": {
+    "title": "Cadouri",
+    "description": "Dacă doriți să ne faceți un cadou, suntem recunoscători pentru un cadou în bani.",
+    "card_label": "Numărul cardului",
+    "copy": "Copiați",
+    "copied": "Copiat!"
+  },
+  "telegram": {
+    "title": "Grup Telegram",
+    "description": "Alăturați-vă grupului nostru pentru comunicare și anunțuri.",
+    "join": "Alăturați-vă"
+  }
+}
