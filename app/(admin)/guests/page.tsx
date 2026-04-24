@@ -10,10 +10,12 @@ export default async function GuestsPage() {
   const protocol     = host.includes('localhost') ? 'http' : 'https'
   const baseUrl      = `${protocol}://${host}`
 
-  const { data: guests } = await supabase
+  const { data: guests, error } = await supabase
     .from('guests')
     .select('*, rsvp_responses(*)')
     .order('created_at', { ascending: false })
+
+  if (error) console.error('Failed to load guests:', error.message)
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-8">

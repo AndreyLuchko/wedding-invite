@@ -19,7 +19,8 @@ export async function addGuest(
 
 export async function deleteGuest(id: string): Promise<{ success: boolean }> {
   const supabase = await createClient()
-  await supabase.from('guests').delete().eq('id', id)
+  const { error } = await supabase.from('guests').delete().eq('id', id)
+  if (error) return { success: false }
   revalidatePath('/admin/guests')
   return { success: true }
 }
