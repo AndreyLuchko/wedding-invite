@@ -10,7 +10,7 @@ export async function GET() {
   const { data } = await supabase
     .from('rsvp_responses')
     .select('attending, guest_count, submitted_at, guests(name, slug, language)')
-    .order('submitted_at', { ascending: true })
+    .order('submitted_at', { ascending: false })
 
   const header = 'Guest Name,Slug,Language,Attending,Guest Count,Submitted At'
   const rows = (data ?? []).map(r => {
