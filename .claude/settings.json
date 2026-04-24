@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/andrii/Desktop/HOME/wedding-invite add app/actions/rsvp.ts components/sections/RSVPSection.tsx)",
+      "Bash(git -C /Users/andrii/Desktop/HOME/wedding-invite commit -m \"feat: add RSVPSection with duplicate-prevention server action\")",
+      "Bash(xargs ls *)",
+      "Bash(git mv *)"
+    ],
+    "additionalDirectories": [
+      "/Users/andrii/Desktop/HOME/wedding-invite/app/(public)"
+    ]
+  }
+}

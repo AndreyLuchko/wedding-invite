@@ -1,13 +1,13 @@
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
 import { createClient } from '@/lib/supabase/server'
-import { HeroSection }     from '@/components/sections/HeroSection'
+import { HeroSection } from '@/components/sections/HeroSection'
 import { LoveStorySection } from '@/components/sections/LoveStorySection'
-import { TimelineSection }  from '@/components/sections/TimelineSection'
-import { LocationSection }  from '@/components/sections/LocationSection'
-import { RSVPSection }      from '@/components/sections/RSVPSection'
-import { WishlistSection }  from '@/components/sections/WishlistSection'
-import { TelegramSection }  from '@/components/sections/TelegramSection'
+import { TimelineSection } from '@/components/sections/TimelineSection'
+import { LocationSection } from '@/components/sections/LocationSection'
+import { RSVPSection } from '@/components/sections/RSVPSection'
+import { WishlistSection } from '@/components/sections/WishlistSection'
+import { TelegramSection } from '@/components/sections/TelegramSection'
 import ruMessages from '@/lib/i18n/ru.json'
 import roMessages from '@/lib/i18n/ro.json'
 import type { Language } from '@/lib/types'
@@ -20,7 +20,7 @@ export default async function InvitationPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const supabase  = await createClient()
+  const supabase = await createClient()
 
   const { data: guest } = await supabase
     .from('guests')
@@ -43,7 +43,7 @@ export default async function InvitationPage({
       <main>
         <HeroSection
           guestName={guest.name}
-          coupleNames={config.couple_names ?? 'Andrii & ____'}
+          coupleNames={config.couple_names ?? 'Pavel & Olesya'}
         />
         <LoveStorySection />
         <TimelineSection />
