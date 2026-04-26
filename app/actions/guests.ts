@@ -28,3 +28,18 @@ export async function deleteGuest(id: string): Promise<{ success: boolean; error
   revalidatePath('/admin/guests')
   return { success: true }
 }
+
+export async function updateGuest(
+  id: string,
+  name: string,
+  language: 'ru' | 'ro'
+): Promise<{ success: boolean; error?: string }> {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return { success: false, error: 'Unauthorized' }
+  const slug = nameToSlug(name)
+  const { error } = await supabase.from('guests').update({ name, slug, language }).eq('id', id)
+  if (error) return { success: false, error: error.message }
+  revalidatePath('/admin/guests')
+  return { success: true }
+}

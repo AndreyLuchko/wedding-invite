@@ -1,12 +1,14 @@
 {
   "hero": {
     "greeting": "Dragă",
+    "invitation": "Vă invităm din toată inima să vă bucurați alături de noi de nunta noastră!",
     "countdown": {
       "days": "zile",
       "hours": "ore",
       "minutes": "minute",
       "seconds": "secunde"
-    }
+    },
+    "rest": "mai sunt până la nuntă"
   },
   "love_story": { "title": "Povestea noastră" },
   "timeline": { "title": "Programul zilei" },

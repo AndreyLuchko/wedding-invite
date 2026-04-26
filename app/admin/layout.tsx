@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { LogoutButton } from '@/components/admin/LogoutButton'
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -11,6 +12,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <Link href="/admin/rsvp" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
           RSVP
         </Link>
+        <LogoutButton />
       </nav>
       <main>{children}</main>
     </div>

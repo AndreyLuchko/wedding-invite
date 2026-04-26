@@ -28,7 +28,7 @@ export function RSVPSection({ guestId }: RSVPSectionProps) {
     return (
       <section className="py-24 px-6 bg-white text-center">
         <FadeIn>
-          <p className="font-serif text-2xl text-dark">
+          <p className="font-heading text-2xl text-dark">
             {status === 'success' ? t('success') : t('already_submitted')}
           </p>
         </FadeIn>
@@ -39,7 +39,7 @@ export function RSVPSection({ guestId }: RSVPSectionProps) {
   return (
     <section className="py-24 px-6 bg-white">
       <FadeIn>
-        <h2 className="font-serif text-4xl text-dark text-center mb-12">
+        <h2 className="font-heading text-4xl text-dark text-center mb-12">
           {t('title')}
         </h2>
       </FadeIn>
@@ -50,7 +50,7 @@ export function RSVPSection({ guestId }: RSVPSectionProps) {
             <button
               type="button"
               onClick={() => setAttending(true)}
-              className={`flex-1 py-3 font-sans text-sm tracking-widest uppercase border transition-colors ${
+              className={`flex-1 py-3 font-body text-sm tracking-widest uppercase border transition-colors ${
                 attending === true
                   ? 'border-gold bg-gold/10 text-gold'
                   : 'border-dark/20 text-dark/60 hover:border-gold hover:text-gold'
@@ -61,7 +61,7 @@ export function RSVPSection({ guestId }: RSVPSectionProps) {
             <button
               type="button"
               onClick={() => setAttending(false)}
-              className={`flex-1 py-3 font-sans text-sm tracking-widest uppercase border transition-colors ${
+              className={`flex-1 py-3 font-body text-sm tracking-widest uppercase border transition-colors ${
                 attending === false
                   ? 'border-dark bg-dark/5 text-dark'
                   : 'border-dark/20 text-dark/60 hover:border-dark'
@@ -73,24 +73,24 @@ export function RSVPSection({ guestId }: RSVPSectionProps) {
 
           {attending === true && (
             <div className="space-y-2">
-              <label className="font-sans text-xs tracking-widest uppercase text-dark/50 block">
+              <label className="font-body text-xs tracking-widest uppercase text-dark/50 block">
                 {t('guest_count_label')}
               </label>
               <div className="flex items-center gap-4 border border-dark/20 p-4">
                 <button
                   type="button"
                   onClick={() => setGuestCount(c => Math.max(1, c - 1))}
-                  className="font-sans text-xl text-dark/60 w-8 text-center hover:text-gold transition-colors"
+                  className="font-body text-xl text-dark/60 w-8 text-center hover:text-gold transition-colors"
                 >
                   −
                 </button>
-                <span className="font-serif text-2xl text-dark flex-1 text-center tabular-nums">
+                <span className="font-heading text-2xl text-dark flex-1 text-center tabular-nums">
                   {guestCount}
                 </span>
                 <button
                   type="button"
                   onClick={() => setGuestCount(c => Math.min(10, c + 1))}
-                  className="font-sans text-xl text-dark/60 w-8 text-center hover:text-gold transition-colors"
+                  className="font-body text-xl text-dark/60 w-8 text-center hover:text-gold transition-colors"
                 >
                   +
                 </button>
@@ -102,7 +102,7 @@ export function RSVPSection({ guestId }: RSVPSectionProps) {
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="w-full py-4 bg-dark text-cream font-sans text-sm tracking-widest uppercase hover:bg-gold hover:text-dark transition-colors disabled:opacity-50"
+              className="w-full py-4 bg-dark text-cream font-body text-sm tracking-widest uppercase hover:bg-gold hover:text-dark transition-colors disabled:opacity-50"
             >
               {status === 'loading' ? '…' : t('submit')}
             </button>

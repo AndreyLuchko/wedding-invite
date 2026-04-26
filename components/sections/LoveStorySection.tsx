@@ -6,11 +6,10 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import { FadeIn } from './FadeIn'
 
-// Update this list after dropping photos into public/gallery/
 const PHOTOS = [
-  '/gallery/photo-1.jpg',
-  '/gallery/photo-2.jpg',
-  '/gallery/photo-3.jpg',
+  '',
+  '',
+  '',
 ]
 
 export function LoveStorySection() {
@@ -23,7 +22,7 @@ export function LoveStorySection() {
   return (
     <section className="py-24 px-6 bg-cream">
       <FadeIn>
-        <h2 className="font-serif text-4xl text-dark text-center mb-12">
+        <h2 className="font-heading text-4xl text-dark text-center mb-12">
           {t('title')}
         </h2>
       </FadeIn>
@@ -68,9 +67,8 @@ export function LoveStorySection() {
               <button
                 key={i}
                 onClick={() => setCurrent(i)}
-                className={`w-1.5 h-1.5 rounded-full transition-colors ${
-                  i === current ? 'bg-cream' : 'bg-cream/40'
-                }`}
+                className={`w-1.5 h-1.5 rounded-full transition-colors ${i === current ? 'bg-cream' : 'bg-cream/40'
+                  }`}
               />
             ))}
           </div>

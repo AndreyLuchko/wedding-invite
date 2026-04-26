@@ -18,7 +18,7 @@ export function TimelineSection() {
   return (
     <section className="py-24 px-6 bg-white">
       <FadeIn>
-        <h2 className="font-serif text-4xl text-dark text-center mb-16">
+        <h2 className="font-heading text-4xl text-dark text-center mb-16">
           {t('title')}
         </h2>
       </FadeIn>
@@ -27,14 +27,14 @@ export function TimelineSection() {
         {TIMELINE.map(({ time, Icon, label }, i) => (
           <FadeIn key={time} delay={i * 0.08}>
             <div className="flex items-center gap-5">
-              <span className="font-sans text-sm text-dark/50 tabular-nums w-12 shrink-0">
+              <span className="font-body text-sm text-dark/50 tabular-nums w-12 shrink-0">
                 {time}
               </span>
               <div className="w-8 h-8 rounded-full border border-gold flex items-center justify-center shrink-0">
                 <Icon className="w-4 h-4 text-gold" />
               </div>
               <div className="h-px flex-1 bg-dark/10" />
-              <span className="font-sans text-sm text-dark/70 text-right">
+              <span className="font-body text-sm text-dark/70 text-right">
                 {label}
               </span>
             </div>

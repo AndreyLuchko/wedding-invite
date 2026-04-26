@@ -1,15 +1,10 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Inter } from 'next/font/google'
+import { Montserrat } from 'next/font/google'
 import './globals.css'
 
-const playfair = Playfair_Display({
+const montserrat = Montserrat({
   subsets: ['latin', 'cyrillic'],
-  variable: '--font-playfair',
-})
-
-const inter = Inter({
-  subsets: ['latin', 'cyrillic'],
-  variable: '--font-inter',
+  variable: '--font-montserrat',
 })
 
 export const metadata: Metadata = {
@@ -20,7 +15,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru">
-      <body className={`${playfair.variable} ${inter.variable} antialiased`}>
+      <body className={`${montserrat.variable} antialiased`}>
         {children}
       </body>
     </html>

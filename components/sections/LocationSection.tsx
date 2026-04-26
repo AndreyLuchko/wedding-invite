@@ -20,12 +20,12 @@ export function LocationSection({
   return (
     <section className="py-24 px-6 bg-cream">
       <FadeIn>
-        <h2 className="font-serif text-4xl text-dark text-center mb-3">
+        <h2 className="font-heading text-4xl text-dark text-center mb-3">
           {t('title')}
         </h2>
         <div className="flex items-center justify-center gap-2 mb-12">
           <MapPin className="w-4 h-4 text-gold" />
-          <p className="font-sans text-sm text-dark/50">{venueName}</p>
+          <p className="font-body text-sm text-dark/50">{venueName}</p>
         </div>
       </FadeIn>
 
@@ -47,12 +47,12 @@ export function LocationSection({
           )}
 
           <div className="text-center">
-            <p className="font-sans text-sm text-dark/50 mb-6">{venueAddress}</p>
+            <p className="font-body text-sm text-dark/50 mb-6">{venueAddress}</p>
             <a
               href={navigateUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-dark/20 px-6 py-3 font-sans text-sm tracking-widest uppercase hover:border-gold hover:text-gold transition-colors"
+              className="inline-flex items-center gap-2 border border-dark/20 px-6 py-3 font-body text-sm tracking-widest uppercase hover:border-gold hover:text-gold transition-colors"
             >
               <MapPin className="w-4 h-4" />
               {t('navigate')}
