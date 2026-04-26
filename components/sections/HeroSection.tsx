@@ -54,6 +54,7 @@ export function HeroSection({ guestName, coupleNames }: HeroSectionProps) {
             src="/gallery/flowers_9x16.png"
             alt=""
             fill
+            sizes="100vw"
             className="object-cover object-center md:hidden"
             priority
             aria-hidden="true"
@@ -62,8 +63,8 @@ export function HeroSection({ guestName, coupleNames }: HeroSectionProps) {
             src="/gallery/flowers_4x3.png"
             alt=""
             fill
+            sizes="100vw"
             className="object-cover object-center hidden md:block"
-            priority
             aria-hidden="true"
           />
         </motion.div>

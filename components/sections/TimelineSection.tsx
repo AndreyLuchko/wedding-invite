@@ -36,7 +36,7 @@ export function TimelineSection() {
 
       <div className="max-w-sm mx-auto relative">
         {/* Vertical gold line */}
-        <div className="absolute left-13.5 top-5 bottom-5 w-px bg-linear-to-b from-transparent via-gold/30 to-transparent" />
+        <div className="absolute left-17 top-5 bottom-5 w-px bg-linear-to-b from-transparent via-gold/30 to-transparent" />
 
         <div className="flex flex-col">
           {TIMELINE.map(({ time, Icon, label, sub }, i) => (
