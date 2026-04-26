@@ -65,6 +65,7 @@ export function HeroSection({ guestName, coupleNames }: HeroSectionProps) {
             fill
             sizes="100vw"
             className="object-cover object-center hidden md:block"
+            priority
             aria-hidden="true"
           />
         </motion.div>
@@ -83,7 +84,7 @@ export function HeroSection({ guestName, coupleNames }: HeroSectionProps) {
           {/* Gold ornament divider */}
           <div className="flex items-center gap-3 w-full max-w-xs mb-3 mx-auto">
             <div className="flex-1 h-px bg-gold/30" />
-            <div className="w-[6px] h-[6px] bg-gold rotate-45 shrink-0" />
+            <div className="w-1.5 h-1.5 bg-gold rotate-45 shrink-0" />
             <div className="flex-1 h-px bg-gold/30" />
           </div>
           <p className="font-body text-[9px] tracking-[0.35em] text-dark/50 uppercase mb-8">
@@ -98,7 +99,7 @@ export function HeroSection({ guestName, coupleNames }: HeroSectionProps) {
                 {i > 0 && (
                   <span className="font-heading text-[28px] text-gold/60 mb-3">·</span>
                 )}
-                <div className="flex flex-col items-center min-w-[44px]">
+                <div className="flex flex-col items-center min-w-11">
                   <span className="font-heading text-[40px] text-dark leading-none tabular-nums">
                     {String(value).padStart(2, '0')}
                   </span>
