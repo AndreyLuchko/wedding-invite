@@ -11,19 +11,21 @@ export function TelegramSection({ telegramLink }: TelegramSectionProps) {
   if (!telegramLink) return null
 
   return (
-    <section className="py-24 px-6 bg-white text-center">
+    <section className="py-16 px-8 bg-white text-center">
       <FadeIn>
-        <h2 className="font-heading text-4xl text-dark mb-4">{t('title')}</h2>
-        <p className="font-body text-sm text-dark/50 max-w-sm mx-auto mb-10">
+        <h2 className="font-heading text-[40px] text-dark mb-3">
+          {t('title')}
+        </h2>
+        <p className="font-body text-[9px] tracking-[0.08em] text-dark/50 max-w-xs mx-auto mb-10 leading-relaxed">
           {t('description')}
         </p>
         <a
           href={telegramLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block bg-dark text-cream px-8 py-4 font-body text-sm tracking-widest uppercase hover:bg-gold hover:text-dark transition-colors"
+          className="inline-flex items-center gap-3 bg-dark text-cream px-10 py-4 font-body text-[8px] tracking-[0.3em] uppercase hover:bg-gold hover:text-dark transition-colors"
         >
-          {t('join')}
+          → {t('join')}
         </a>
       </FadeIn>
     </section>
