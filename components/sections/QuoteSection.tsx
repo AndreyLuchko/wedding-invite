@@ -10,7 +10,7 @@ export function QuoteSection() {
       <FadeIn>
         <span
           className="font-heading text-[52px] text-gold/20 leading-none block -mb-2"
-          aria-hidden
+          aria-hidden="true"
         >
           "
         </span>
