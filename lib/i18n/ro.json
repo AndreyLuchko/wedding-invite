@@ -8,16 +8,37 @@
       "minutes": "minute",
       "seconds": "secunde"
     },
-    "rest": "mai sunt până la nuntă"
+    "rest": "mai sunt până la nuntă",
+    "scroll": "Derulează"
+  },
+  "quote": {
+    "text": "Acolo unde sunt doi — există deja o lume întreagă"
   },
   "love_story": { "title": "Povestea noastră" },
-  "timeline": { "title": "Programul zilei" },
+  "timeline": {
+    "title": "Programul zilei",
+    "subtitle": "Programul sărbătorii",
+    "ceremony": "Ceremonie",
+    "ceremony_sub": "Înregistrarea oficială",
+    "aperitif": "Aperitiv",
+    "aperitif_sub": "Gustări ușoare și salutări",
+    "photo": "Fotosesiune",
+    "photo_sub": "Momente memorabile",
+    "banquet": "Banchet",
+    "banquet_sub": "Cina festivă",
+    "cake": "Tort",
+    "cake_sub": "Momentul dulce",
+    "dance": "Dans",
+    "dance_sub": "Până dimineața"
+  },
   "location": {
     "title": "Locul evenimentului",
+    "subtitle": "Unde ne găsiți",
     "navigate": "Deschide în navigator"
   },
   "rsvp": {
-    "title": "Confirmați prezența",
+    "title": "Veți fi cu noi?",
+    "deadline": "Vă rugăm să confirmați până pe 1 august 2026",
     "attending_yes": "Vin",
     "attending_no": "Nu pot veni",
     "guest_count_label": "Numărul de persoane (inclusiv dvs.)",
@@ -27,14 +48,14 @@
   },
   "wishlist": {
     "title": "Cadouri",
-    "description": "Dacă doriți să ne faceți un cadou, suntem recunoscători pentru un cadou în bani.",
+    "description": "Cel mai bun cadou este prezența voastră. Dacă doriți să ne bucurați — vom fi recunoscători pentru un cadou în bani.",
     "card_label": "Numărul cardului",
     "copy": "Copiați",
     "copied": "Copiat!"
   },
   "telegram": {
     "title": "Grup Telegram",
-    "description": "Alăturați-vă grupului nostru pentru comunicare și anunțuri.",
+    "description": "Alăturați-vă grupului nostru de Telegram — acolo sunt anunțuri, coordonare și fotografii de la sărbătoare.",
     "join": "Alăturați-vă"
   }
 }
