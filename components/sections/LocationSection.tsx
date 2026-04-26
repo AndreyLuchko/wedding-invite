@@ -18,46 +18,51 @@ export function LocationSection({
   const navigateUrl = `https://maps.google.com/?q=${encodeURIComponent(venueAddress)}`
 
   return (
-    <section className="py-24 px-6 bg-cream">
+    <section className="py-16 px-8 bg-cream">
       <FadeIn>
-        <h2 className="font-heading text-4xl text-dark text-center mb-3">
+        <h2 className="font-heading text-[40px] text-dark text-center mb-1">
           {t('title')}
         </h2>
-        <div className="flex items-center justify-center gap-2 mb-12">
-          <MapPin className="w-4 h-4 text-gold" />
-          <p className="font-body text-sm text-dark/50">{venueName}</p>
-        </div>
+        <p className="font-body text-[8px] tracking-[0.3em] text-gold uppercase text-center mb-10">
+          {t('subtitle')}
+        </p>
       </FadeIn>
 
       <FadeIn delay={0.2}>
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-lg mx-auto">
           {googleMapsEmbedUrl ? (
             <iframe
               src={googleMapsEmbedUrl}
-              className="w-full h-72 border-0 mb-6"
+              className="w-full h-64 border border-gold/20 mb-6"
               loading="lazy"
               allowFullScreen
               referrerPolicy="no-referrer-when-downgrade"
               title="Wedding venue"
             />
           ) : (
-            <div className="w-full h-72 bg-dark/5 flex items-center justify-center mb-6">
+            <div className="w-full h-64 bg-dark/5 border border-gold/20 flex items-center justify-center mb-6">
               <MapPin className="w-8 h-8 text-dark/20" />
             </div>
           )}
 
-          <div className="text-center">
-            <p className="font-body text-sm text-dark/50 mb-6">{venueAddress}</p>
-            <a
-              href={navigateUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-dark/20 px-6 py-3 font-body text-sm tracking-widest uppercase hover:border-gold hover:text-gold transition-colors"
-            >
-              <MapPin className="w-4 h-4" />
-              {t('navigate')}
-            </a>
-          </div>
+          {venueName && (
+            <p className="font-heading text-[28px] text-dark text-center mb-2">
+              {venueName}
+            </p>
+          )}
+          <p className="font-body text-[9px] tracking-[0.1em] text-dark/50 text-center mb-6 leading-relaxed">
+            {venueAddress}
+          </p>
+
+          <a
+            href={navigateUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 w-full border border-gold/50 px-6 py-4 font-body text-[8px] tracking-[0.3em] uppercase text-dark hover:border-gold hover:text-gold transition-colors"
+          >
+            <MapPin className="w-3.5 h-3.5" />
+            {t('navigate')}
+          </a>
         </div>
       </FadeIn>
     </section>
