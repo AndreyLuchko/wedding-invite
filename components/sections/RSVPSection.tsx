@@ -76,9 +76,9 @@ export function RSVPSection({ guestId }: RSVPSectionProps) {
 
           {attending === true && (
             <div className="space-y-2">
-              <label className="font-body text-[8px] tracking-[0.25em] uppercase text-dark/40 block">
+              <p className="font-body text-[8px] tracking-[0.25em] uppercase text-dark/40">
                 {t('guest_count_label')}
-              </label>
+              </p>
               <div className="flex items-center gap-4 border border-dark/15 p-4">
                 <button
                   type="button"

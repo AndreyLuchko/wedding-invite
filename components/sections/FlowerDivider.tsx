@@ -15,6 +15,7 @@ export function FlowerDivider({
         src={src}
         alt=""
         fill
+        sizes="100vw"
         className={`object-cover object-center ${flip ? '-scale-x-100' : ''}`}
       />
       <div className="absolute inset-x-0 top-0 h-[45%] bg-linear-to-b from-cream to-transparent" />

@@ -40,6 +40,7 @@ export function WishlistSection({ cardNumber }: WishlistSectionProps) {
                 {cardNumber}
               </span>
               <button
+                type="button"
                 onClick={handleCopy}
                 aria-label={copied ? t('copied') : t('copy')}
                 className="text-dark/40 hover:text-gold transition-colors ml-4 shrink-0"
