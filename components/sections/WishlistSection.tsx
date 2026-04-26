@@ -19,12 +19,12 @@ export function WishlistSection({ cardNumber }: WishlistSectionProps) {
   }
 
   return (
-    <section className="py-24 px-6 bg-cream">
+    <section className="py-16 px-8 bg-cream">
       <FadeIn>
-        <h2 className="font-heading text-4xl text-dark text-center mb-4">
+        <h2 className="font-heading text-[40px] text-dark text-center mb-3">
           {t('title')}
         </h2>
-        <p className="font-body text-sm text-dark/50 text-center max-w-sm mx-auto mb-12">
+        <p className="font-body text-[9px] tracking-[0.08em] text-dark/50 text-center max-w-xs mx-auto mb-10 leading-relaxed">
           {t('description')}
         </p>
       </FadeIn>
@@ -32,17 +32,17 @@ export function WishlistSection({ cardNumber }: WishlistSectionProps) {
       {cardNumber && (
         <FadeIn delay={0.2}>
           <div className="max-w-xs mx-auto">
-            <p className="font-body text-xs tracking-widest uppercase text-dark/40 text-center mb-3">
+            <p className="font-body text-[8px] tracking-[0.25em] uppercase text-dark/40 text-center mb-3">
               {t('card_label')}
             </p>
-            <div className="flex items-center justify-between border border-dark/20 px-4 py-3">
-              <span className="font-body text-lg tracking-widest text-dark">
+            <div className="flex items-center justify-between border border-gold/40 px-5 py-4">
+              <span className="font-body text-[15px] tracking-[0.15em] text-dark">
                 {cardNumber}
               </span>
               <button
                 onClick={handleCopy}
                 aria-label={copied ? t('copied') : t('copy')}
-                className="text-dark/40 hover:text-gold transition-colors ml-4"
+                className="text-dark/40 hover:text-gold transition-colors ml-4 shrink-0"
               >
                 {copied
                   ? <Check className="w-4 h-4 text-gold" />
@@ -51,7 +51,7 @@ export function WishlistSection({ cardNumber }: WishlistSectionProps) {
               </button>
             </div>
             {copied && (
-              <p className="text-center font-body text-xs text-gold mt-2">
+              <p className="text-center font-body text-[9px] text-gold mt-2 tracking-widest">
                 {t('copied')}
               </p>
             )}
