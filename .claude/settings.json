@@ -1,10 +1,19 @@
 {
+  "env": {
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "55",
+    "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1",
+    "MAX_THINKING_TOKENS": "10000"
+  },
   "permissions": {
     "allow": [
       "Bash(git -C /Users/andrii/Desktop/HOME/wedding-invite add app/actions/rsvp.ts components/sections/RSVPSection.tsx)",
       "Bash(git -C /Users/andrii/Desktop/HOME/wedding-invite commit -m \"feat: add RSVPSection with duplicate-prevention server action\")",
       "Bash(xargs ls *)",
-      "Bash(git mv *)"
+      "Bash(git mv *)",
+      "Read(//Users/andrii/.claude/plugins/cache/claude-plugins-official/superpowers/5.0.7/skills/brainstorming/**)",
+      "Bash(bash scripts/start-server.sh --project-dir /Users/andrii/Desktop/HOME/wedding-invite)",
+      "Read(//Users/andrii/.claude/plugins/cache/claude-plugins-official/superpowers/5.0.7/skills/subagent-driven-development/**)",
+      "Bash(node -e ' *)"
     ],
     "additionalDirectories": [
       "/Users/andrii/Desktop/HOME/wedding-invite/app/(public)"

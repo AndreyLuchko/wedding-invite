@@ -165,7 +165,7 @@ export function GuestsTable({ guests, baseUrl }: GuestsTableProps) {
                     <div className="flex items-center justify-end gap-2">
                       <button
                         onClick={() => openEdit(g)}
-                        className="text-gray-300 hover:text-blue-500 transition-colors"
+                        className="hidden text-gray-300 hover:text-blue-500 transition-colors"
                       >
                         <Pencil className="w-4 h-4" />
                       </button>

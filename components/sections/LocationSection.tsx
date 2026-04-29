@@ -23,9 +23,14 @@ export function LocationSection({
         <h2 className="font-heading text-[40px] text-dark text-center mb-1">
           {t('title')}
         </h2>
-        <p className="font-body text-[8px] tracking-[0.3em] text-gold uppercase text-center mb-10">
+        {venueName && (
+          <p className="font-heading text-[28px] text-dark text-center mb-2">
+            {venueName}
+          </p>
+        )}
+        {/* <p className="font-body text-[8px] tracking-[0.3em] text-gold uppercase text-center mb-10">
           {t('subtitle')}
-        </p>
+        </p> */}
       </FadeIn>
 
       <FadeIn delay={0.2}>
@@ -45,11 +50,7 @@ export function LocationSection({
             </div>
           )}
 
-          {venueName && (
-            <p className="font-heading text-[28px] text-dark text-center mb-2">
-              {venueName}
-            </p>
-          )}
+
           <p className="font-body text-[9px] tracking-[0.1em] text-dark/50 text-center mb-6 leading-relaxed">
             {venueAddress}
           </p>

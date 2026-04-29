@@ -49,7 +49,7 @@ export default async function InvitationPage({
         <QuoteSection />
         <FlowerDivider src="/gallery/flowers_4x3.png" />
         <TimelineSection />
-        <FlowerDivider src="/gallery/flowers_1x1.png" flip />
+        <FlowerDivider src="/gallery/flowers_4x3.png" flip />
         <LocationSection
           venueName={config.venue_name ?? ''}
           venueAddress={config.venue_address ?? ''}
@@ -58,7 +58,7 @@ export default async function InvitationPage({
         <FlowerDivider src="/gallery/flowers_4x3.png" />
         <RSVPSection guestId={guest.id} />
         <WishlistSection cardNumber={config.card_number ?? ''} />
-        <FlowerDivider src="/gallery/flowers_1x1.png" />
+        <FlowerDivider src="/gallery/flowers_4x3.png" />
         <TelegramSection telegramLink={config.telegram_link ?? ''} />
       </main>
     </NextIntlClientProvider>

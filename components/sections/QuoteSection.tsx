@@ -12,9 +12,9 @@ export function QuoteSection() {
           className="font-heading text-[52px] text-gold/20 leading-none block -mb-2"
           aria-hidden="true"
         >
-          "
+          &quot;
         </span>
-        <p className="font-heading text-[24px] text-dark leading-relaxed mb-5">
+        <p className="font-heading text-[32px] md:text-[42] text-dark leading-relaxed mb-5">
           {t('text')}
         </p>
         <p className="font-body text-[9px] tracking-[0.35em] text-gold uppercase">
