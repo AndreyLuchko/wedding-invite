@@ -178,6 +178,18 @@ export function HeroSection({ guestName, coupleNames }: HeroSectionProps) {
 
         </div>
       </motion.div>
+
+      <FadeIn delay={0.7}>
+        <div className="relative z-10 mx-auto aspect-[47/42] w-full max-w-[400px] overflow-hidden">
+          <Image
+            src="/gallery/Glasses.png"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
+      </FadeIn>
     </section>
   )
 }
