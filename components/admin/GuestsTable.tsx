@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { Copy, Check, Trash2, Plus, X, Pencil } from 'lucide-react'
-import { addGuest, deleteGuest, updateGuest } from '@/app/actions/guests'
+import { addGuest, deleteGuest, updateGuestGreeting } from '@/app/actions/guests'
 import type { GuestWithRsvp } from '@/lib/types'
 
 interface GuestsTableProps {
@@ -11,21 +11,20 @@ interface GuestsTableProps {
 
 interface EditingGuest {
   id: string
-  name: string
-  language: 'ru' | 'ro'
+  slug: string
 }
 
 export function GuestsTable({ guests, baseUrl }: GuestsTableProps) {
   const [copiedSlug, setCopiedSlug] = useState<string | null>(null)
   const [showForm, setShowForm]     = useState(false)
   const [newName, setNewName]       = useState('')
+  const [newGreeting, setNewGreeting] = useState('')
   const [newLang, setNewLang]       = useState<'ru' | 'ro'>('ru')
   const [adding, setAdding]         = useState(false)
   const [addError, setAddError]     = useState('')
 
   const [editing, setEditing]       = useState<EditingGuest | null>(null)
-  const [editName, setEditName]     = useState('')
-  const [editLang, setEditLang]     = useState<'ru' | 'ro'>('ru')
+  const [editGreeting, setEditGreeting] = useState('')
   const [saving, setSaving]         = useState(false)
   const [editError, setEditError]   = useState('')
 
@@ -39,13 +38,14 @@ export function GuestsTable({ guests, baseUrl }: GuestsTableProps) {
     e.preventDefault()
     setAdding(true)
     setAddError('')
-    const result = await addGuest(newName.trim(), newLang)
+    const result = await addGuest(newName.trim(), newGreeting.trim(), newLang)
     if (!result.success) {
       setAddError(result.error ?? 'Error adding guest')
       setAdding(false)
       return
     }
     setNewName('')
+    setNewGreeting('')
     setAdding(false)
     setShowForm(false)
   }
@@ -56,9 +56,11 @@ export function GuestsTable({ guests, baseUrl }: GuestsTableProps) {
   }
 
   function openEdit(g: GuestWithRsvp) {
-    setEditing({ id: g.id, name: g.name, language: g.language as 'ru' | 'ro' })
-    setEditName(g.name)
-    setEditLang(g.language as 'ru' | 'ro')
+    setEditing({
+      id: g.id,
+      slug: g.slug,
+    })
+    setEditGreeting(g.greeting_text)
     setEditError('')
   }
 
@@ -72,7 +74,7 @@ export function GuestsTable({ guests, baseUrl }: GuestsTableProps) {
     if (!editing) return
     setSaving(true)
     setEditError('')
-    const result = await updateGuest(editing.id, editName.trim(), editLang)
+    const result = await updateGuestGreeting(editing.id, editGreeting.trim())
     if (!result.success) {
       setEditError(result.error ?? 'Error updating guest')
       setSaving(false)
@@ -98,12 +100,20 @@ export function GuestsTable({ guests, baseUrl }: GuestsTableProps) {
       </div>
 
       {showForm && (
-        <form onSubmit={handleAdd} className="flex gap-3 mb-6 p-4 bg-white rounded border">
+        <form onSubmit={handleAdd} className="grid grid-cols-1 md:grid-cols-[1fr_1fr_auto_auto] gap-3 mb-6 p-4 bg-white rounded border">
           <input
             type="text"
-            placeholder="Full name"
+            placeholder="Name for URL"
             value={newName}
             onChange={e => setNewName(e.target.value)}
+            required
+            className="flex-1 border border-gray-300 px-3 py-2 text-sm rounded outline-none focus:border-gray-500"
+          />
+          <input
+            type="text"
+            placeholder="Greeting text"
+            value={newGreeting}
+            onChange={e => setNewGreeting(e.target.value)}
             required
             className="flex-1 border border-gray-300 px-3 py-2 text-sm rounded outline-none focus:border-gray-500"
           />
@@ -131,6 +141,7 @@ export function GuestsTable({ guests, baseUrl }: GuestsTableProps) {
           <thead className="bg-gray-50 border-b">
             <tr>
               <th className="text-left px-4 py-3 font-medium text-gray-500">Name</th>
+              <th className="text-left px-4 py-3 font-medium text-gray-500">Greeting</th>
               <th className="text-left px-4 py-3 font-medium text-gray-500">Lang</th>
               <th className="text-left px-4 py-3 font-medium text-gray-500">URL</th>
               <th className="text-left px-4 py-3 font-medium text-gray-500">RSVP</th>
@@ -143,6 +154,7 @@ export function GuestsTable({ guests, baseUrl }: GuestsTableProps) {
               return (
                 <tr key={g.id} className="hover:bg-gray-50">
                   <td className="px-4 py-3 font-medium text-gray-900">{g.name}</td>
+                  <td className="px-4 py-3 text-gray-600">{g.greeting_text}</td>
                   <td className="px-4 py-3 text-gray-400 text-xs uppercase">{g.language}</td>
                   <td className="px-4 py-3">
                     <button
@@ -165,7 +177,7 @@ export function GuestsTable({ guests, baseUrl }: GuestsTableProps) {
                     <div className="flex items-center justify-end gap-2">
                       <button
                         onClick={() => openEdit(g)}
-                        className="hidden text-gray-300 hover:text-blue-500 transition-colors"
+                        className="text-gray-300 hover:text-blue-500 transition-colors"
                       >
                         <Pencil className="w-4 h-4" />
                       </button>
@@ -182,7 +194,7 @@ export function GuestsTable({ guests, baseUrl }: GuestsTableProps) {
             })}
             {guests.length === 0 && (
               <tr>
-                <td colSpan={5} className="px-4 py-10 text-center text-gray-400 text-sm">
+                <td colSpan={6} className="px-4 py-10 text-center text-gray-400 text-sm">
                   No guests yet. Add your first guest above.
                 </td>
               </tr>
@@ -205,26 +217,24 @@ export function GuestsTable({ guests, baseUrl }: GuestsTableProps) {
             </div>
             <form onSubmit={handleSaveEdit} className="space-y-4">
               <div>
-                <label className="block text-xs font-medium text-gray-500 mb-1">Name</label>
+                <label className="block text-xs font-medium text-gray-500 mb-1">URL</label>
                 <input
                   type="text"
-                  value={editName}
-                  onChange={e => setEditName(e.target.value)}
+                  value={`${baseUrl}/${editing.slug}`}
+                  disabled
+                  className="w-full border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-500 rounded"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-500 mb-1">Greeting text</label>
+                <input
+                  type="text"
+                  value={editGreeting}
+                  onChange={e => setEditGreeting(e.target.value)}
                   required
                   autoFocus
                   className="w-full border border-gray-300 px-3 py-2 text-sm rounded outline-none focus:border-gray-500"
                 />
-              </div>
-              <div>
-                <label className="block text-xs font-medium text-gray-500 mb-1">Language</label>
-                <select
-                  value={editLang}
-                  onChange={e => setEditLang(e.target.value as 'ru' | 'ro')}
-                  className="w-full border border-gray-300 px-3 py-2 text-sm rounded"
-                >
-                  <option value="ru">Russian</option>
-                  <option value="ro">Romanian</option>
-                </select>
               </div>
               {editError && <p className="text-red-500 text-xs">{editError}</p>}
               <div className="flex gap-3 pt-1">

@@ -19,11 +19,11 @@ function getTimeLeft() {
 }
 
 interface HeroSectionProps {
-  guestName: string
+  greetingText: string
   coupleNames: string
 }
 
-export function HeroSection({ guestName, coupleNames }: HeroSectionProps) {
+export function HeroSection({ greetingText, coupleNames }: HeroSectionProps) {
   const t = useTranslations('hero')
   const [timeLeft, setTimeLeft] = useState(getTimeLeft())
   const containerRef = useRef<HTMLElement>(null)
@@ -82,85 +82,86 @@ export function HeroSection({ guestName, coupleNames }: HeroSectionProps) {
       </div>
 
       {/* ── Main content ── */}
-      <motion.div
-        style={{ y: contentY, opacity: contentOpacity }}
-        className="relative z-10 flex-1 flex flex-col items-center px-6 pt-[28vh] pb-12 md:justify-center md:pt-[13%]"
-      >
+      <div className="relative z-10 flex-1 flex flex-col items-center px-6 pt-[28vh] pb-48 md:justify-center md:pt-[13%] md:pb-56">
         <div className="w-full max-w-xl mx-auto flex flex-col items-center">
+          <motion.div
+            style={{ y: contentY, opacity: contentOpacity }}
+            className="flex w-full flex-col items-center"
+          >
+            {/* Greeting */}
+            <FadeIn>
+              <p className="font-body text-[12px] tracking-[0.45em] text-gold mb-8">
+                {greetingText}
+              </p>
+            </FadeIn>
 
-          {/* Greeting */}
-          <FadeIn>
-            <p className="font-body text-[8px] tracking-[0.45em] text-gold uppercase mb-8">
-              {t('greeting')}, {guestName}
-            </p>
-          </FadeIn>
+            {/* Couple names */}
+            <FadeIn delay={0.1}>
+              <h1 className="font-heading text-[68px] md:text-[90px] text-dark leading-[1.05] text-center mb-5">
+                {coupleNames}
+              </h1>
+            </FadeIn>
 
-          {/* Couple names */}
-          <FadeIn delay={0.1}>
-            <h1 className="font-heading text-[68px] md:text-[90px] text-dark leading-[1.05] text-center mb-5">
-              {coupleNames}
-            </h1>
-          </FadeIn>
+            {/* Gold ornament divider */}
+            <FadeIn delay={0.2}>
+              <div className="flex items-center gap-3 w-40 mb-4 mx-auto">
+                <div className="flex-1 h-px bg-gold/30" />
+                <div className="w-1 h-1 bg-gold rotate-45 shrink-0" />
+                <div className="flex-1 h-px bg-gold/30" />
+              </div>
+            </FadeIn>
 
-          {/* Gold ornament divider */}
-          <FadeIn delay={0.2}>
-            <div className="flex items-center gap-3 w-40 mb-4 mx-auto">
-              <div className="flex-1 h-px bg-gold/30" />
-              <div className="w-1 h-1 bg-gold rotate-45 shrink-0" />
-              <div className="flex-1 h-px bg-gold/30" />
-            </div>
-          </FadeIn>
+            {/* Invitation */}
+            <FadeIn delay={0.25}>
+              <p className="font-body text-sm md:text-base leading-relaxed text-dark/70 text-center max-w-md mb-4">
+                {t('invitation')}
+              </p>
+            </FadeIn>
 
-          {/* Invitation */}
-          <FadeIn delay={0.25}>
-            <p className="font-body text-sm md:text-base leading-relaxed text-dark/70 text-center max-w-md mb-4">
-              {t('invitation')}
-            </p>
-          </FadeIn>
+            {/* Gold ornament divider */}
+            <FadeIn delay={0.3}>
+              <div className="flex items-center gap-3 w-40 mb-4 mx-auto">
+                <div className="flex-1 h-px bg-gold/30" />
+                <div className="w-1 h-1 bg-gold rotate-45 shrink-0" />
+                <div className="flex-1 h-px bg-gold/30" />
+              </div>
+            </FadeIn>
 
-          {/* Gold ornament divider */}
-          <FadeIn delay={0.3}>
-            <div className="flex items-center gap-3 w-40 mb-4 mx-auto">
-              <div className="flex-1 h-px bg-gold/30" />
-              <div className="w-1 h-1 bg-gold rotate-45 shrink-0" />
-              <div className="flex-1 h-px bg-gold/30" />
-            </div>
-          </FadeIn>
+            {/* Date */}
+            <FadeIn delay={0.35}>
+              <p className="font-body text-[12px] tracking-[0.4em] text-dark/45 uppercase mb-4">
+                23 · 08 · 2026
+              </p>
+            </FadeIn>
 
-          {/* Date */}
-          <FadeIn delay={0.35}>
-            <p className="font-body text-[12px] tracking-[0.4em] text-dark/45 uppercase mb-4">
-              23 · 08 · 2026
-            </p>
-          </FadeIn>
+            {/* Rest */}
+            <FadeIn delay={0.4}>
+              <h3 className="font-heading md:text-xl leading-relaxed text-dark/70 text-center max-w-md mb-10 mt-10">
+                {t('rest')}
+              </h3>
+            </FadeIn>
 
-          {/* Rest */}
-          <FadeIn delay={0.4}>
-            <h3 className="font-heading md:text-xl leading-relaxed text-dark/70 text-center max-w-md mb-10 mt-10">
-              {t('rest')}
-            </h3>
-          </FadeIn>
-
-          {/* Countdown */}
-          <FadeIn delay={0.45}>
-            <div className="flex items-end gap-2 mb-10">
-              {units.map(([value, label], i) => (
-                <div key={String(label)} className="flex items-end gap-2">
-                  {i > 0 && (
-                    <span className="font-heading text-[24px] text-gold/50 mb-2.5">·</span>
-                  )}
-                  <div className="flex flex-col items-center min-w-11">
-                    <span className="font-heading text-[38px] text-dark leading-none tabular-nums">
-                      {String(value).padStart(2, '0')}
-                    </span>
-                    <span className="font-body text-[7px] tracking-[0.2em] text-dark/35 uppercase mt-1">
-                      {label}
-                    </span>
+            {/* Countdown */}
+            <FadeIn delay={0.45}>
+              <div className="flex items-end gap-2 mb-10">
+                {units.map(([value, label], i) => (
+                  <div key={String(label)} className="flex items-end gap-2">
+                    {i > 0 && (
+                      <span className="font-heading text-[24px] text-gold/50 mb-2.5">·</span>
+                    )}
+                    <div className="flex flex-col items-center min-w-11">
+                      <span className="font-heading text-[38px] text-dark leading-none tabular-nums">
+                        {String(value).padStart(2, '0')}
+                      </span>
+                      <span className="font-body text-[7px] tracking-[0.2em] text-dark/35 uppercase mt-1">
+                        {label}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </FadeIn>
+                ))}
+              </div>
+            </FadeIn>
+          </motion.div>
 
           {/* Scroll indicator */}
           <FadeIn delay={0.6}>
@@ -175,18 +176,17 @@ export function HeroSection({ guestName, coupleNames }: HeroSectionProps) {
               </motion.span>
             </div>
           </FadeIn>
-
         </div>
-      </motion.div>
+      </div>
 
-      <FadeIn delay={0.7}>
-        <div className="relative z-10 mx-auto aspect-[47/42] w-full max-w-[400px] overflow-hidden">
+      <FadeIn delay={0.7} className="absolute inset-x-0 bottom-6 z-20 flex justify-center md:bottom-8">
+        <div className="relative aspect-[47/42] w-[min(56vw,220px)] overflow-hidden">
           <Image
             src="/gallery/Glasses.png"
             alt=""
             fill
-            sizes="100vw"
-            className="object-cover object-center"
+            sizes="(min-width: 768px) 220px, 56vw"
+            className="object-contain brightness-0 opacity-70"
           />
         </div>
       </FadeIn>

@@ -43,7 +43,7 @@ export default async function InvitationPage({
     <NextIntlClientProvider locale={locale} messages={messages[locale]}>
       <main>
         <HeroSection
-          guestName={guest.name}
+          greetingText={guest.greeting_text}
           coupleNames={config.couple_names ?? 'Pavel & Olesya'}
         />
         <QuoteSection />

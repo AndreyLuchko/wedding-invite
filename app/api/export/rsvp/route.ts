@@ -9,14 +9,18 @@ export async function GET() {
 
   const { data } = await supabase
     .from('rsvp_responses')
-    .select('attending, guest_count, submitted_at, guests(name, slug, language)')
+    .select('greeting_text, attending, guest_count, submitted_at, guests(name, slug, language)')
     .order('submitted_at', { ascending: false })
 
-  const header = 'Guest Name,Slug,Language,Attending,Guest Count,Submitted At'
+  const escapeCsv = (value: string | number) =>
+    `"${String(value).replace(/"/g, '""')}"`
+
+  const header = 'Guest Name,Greeting,Slug,Language,Attending,Guest Count,Submitted At'
   const rows = (data ?? []).map(r => {
     const g = r.guests as unknown as { name: string; slug: string; language: string } | null
     return [
-      `"${(g?.name ?? '').replace(/"/g, '""')}"`,
+      escapeCsv(g?.name ?? ''),
+      escapeCsv(r.greeting_text ?? ''),
       g?.slug ?? '',
       g?.language ?? '',
       r.attending ? 'Yes' : 'No',

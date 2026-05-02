@@ -56,6 +56,7 @@ export default async function RsvpPage() {
           <thead className="bg-gray-50 border-b">
             <tr>
               <th className="text-left px-4 py-3 font-medium text-gray-500">Guest</th>
+              <th className="text-left px-4 py-3 font-medium text-gray-500">Greeting</th>
               <th className="text-left px-4 py-3 font-medium text-gray-500">Attending</th>
               <th className="text-left px-4 py-3 font-medium text-gray-500">People</th>
               <th className="text-left px-4 py-3 font-medium text-gray-500">Submitted</th>
@@ -66,6 +67,9 @@ export default async function RsvpPage() {
               <tr key={r.id} className="hover:bg-gray-50">
                 <td className="px-4 py-3 font-medium text-gray-900">
                   {(r.guests as { name: string } | null)?.name ?? '—'}
+                </td>
+                <td className="px-4 py-3 text-gray-500">
+                  {r.greeting_text || '—'}
                 </td>
                 <td className="px-4 py-3">
                   {r.attending
@@ -82,7 +86,7 @@ export default async function RsvpPage() {
             ))}
             {(responses ?? []).length === 0 && (
               <tr>
-                <td colSpan={4} className="px-4 py-10 text-center text-gray-400 text-sm">
+                <td colSpan={5} className="px-4 py-10 text-center text-gray-400 text-sm">
                   No responses yet.
                 </td>
               </tr>

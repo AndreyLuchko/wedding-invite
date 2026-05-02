@@ -17,8 +17,17 @@ export async function submitRsvp(
 
   if (existing) return { success: false, error: 'already_submitted' }
 
+  const { data: guest, error: guestError } = await supabase
+    .from('guests')
+    .select('greeting_text')
+    .eq('id', guestId)
+    .single()
+
+  if (guestError) return { success: false, error: guestError.message }
+
   const { error } = await supabase.from('rsvp_responses').insert({
     guest_id:    guestId,
+    greeting_text: guest.greeting_text,
     attending,
     guest_count: attending ? guestCount : 0,
   })

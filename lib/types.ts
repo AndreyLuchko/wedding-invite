@@ -4,6 +4,7 @@ export interface Guest {
   id: string
   slug: string
   name: string
+  greeting_text: string
   language: Language
   created_at: string
 }
@@ -11,6 +12,7 @@ export interface Guest {
 export interface RsvpResponse {
   id: string
   guest_id: string
+  greeting_text: string
   attending: boolean
   guest_count: number
   meal_pref: string | null
