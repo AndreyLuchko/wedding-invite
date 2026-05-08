@@ -60,17 +60,17 @@ export function HeroSection({ greetingText, coupleNames }: HeroSectionProps) {
     >
       {/* Photo */}
       <div className="absolute top-0 inset-x-0 flex justify-center" aria-hidden="true">
-        <div className="relative h-[32vh] w-full overflow-hidden bg-cream md:max-w-5xl">
+        <div className="relative h-105 w-full max-w-xs overflow-hidden bg-cream">
           <motion.div
             style={{ y: photoY, opacity: photoOpacity }}
-            className="absolute inset-0 md:-top-16 md:h-[calc(100%+4rem)]"
+            className="absolute inset-0  h-[calc(100%+1.5rem)] top-0 md:h-[calc(100%+1.5rem)]"
           >
             <Image
-              src="/gallery/flowers_4x3.png"
+              src="/gallery/wedding_pair_9x16.png"
               alt=""
               fill
-              sizes="(min-width: 768px) 1024px, 100vw"
-              className="object-cover object-top"
+              sizes="320px"
+              className="object-cover object-center"
               priority
             />
           </motion.div>
@@ -82,7 +82,7 @@ export function HeroSection({ greetingText, coupleNames }: HeroSectionProps) {
       </div>
 
       {/* ── Main content ── */}
-      <div className="relative z-10 flex-1 flex flex-col items-center px-6 pt-[28vh] pb-48 md:justify-center md:pt-[13%] md:pb-56">
+      <div className="relative z-10 flex-1 flex flex-col items-center px-6 pt-52 pb-48 md:justify-center md:pt-[13%] md:pb-56">
         <div className="w-full max-w-xl mx-auto flex flex-col items-center">
           <motion.div
             style={{ y: contentY, opacity: contentOpacity }}
@@ -90,14 +90,14 @@ export function HeroSection({ greetingText, coupleNames }: HeroSectionProps) {
           >
             {/* Greeting */}
             <FadeIn>
-              <p className="font-body text-[12px] tracking-[0.45em] text-gold mb-8">
+              <p className="font-body font-bold text-[12px] tracking-[0.45em] text-gold mb-8">
                 {greetingText}
               </p>
             </FadeIn>
 
             {/* Couple names */}
             <FadeIn delay={0.1}>
-              <h1 className="font-heading text-[68px] md:text-[90px] text-dark leading-[1.05] text-center mb-5">
+              <h1 className="font-wolfgang text-[68px] md:text-[90px] text-dark leading-[1.05] text-center mb-5">
                 {coupleNames}
               </h1>
             </FadeIn>
@@ -136,7 +136,7 @@ export function HeroSection({ greetingText, coupleNames }: HeroSectionProps) {
 
             {/* Rest */}
             <FadeIn delay={0.4}>
-              <h3 className="font-heading md:text-xl leading-relaxed text-dark/70 text-center max-w-md mb-10 mt-10">
+              <h3 className="font-cormorant md:text-xl leading-relaxed text-dark/70 text-center max-w-md mb-10 mt-10">
                 {t('rest')}
               </h3>
             </FadeIn>
@@ -180,7 +180,7 @@ export function HeroSection({ greetingText, coupleNames }: HeroSectionProps) {
       </div>
 
       <FadeIn delay={0.7} className="absolute inset-x-0 bottom-6 z-20 flex justify-center md:bottom-8">
-        <div className="relative aspect-[47/42] w-[min(56vw,220px)] overflow-hidden">
+        <div className="relative aspect-[47/42] w-[min(56vw,120px)] overflow-hidden">
           <Image
             src="/gallery/Glasses.png"
             alt=""
