@@ -4,14 +4,14 @@
   --color-cream: #fafaf8;
   --color-dark: #1a1a1a;
   --color-gold: #c9a96e;
-  --font-sans: var(--font-montserrat), sans-serif;
+  --font-sans: var(--font-cormorant), serif;
 }
 
 @layer base {
   body {
     background-color: var(--color-cream);
     color: var(--color-dark);
-    font-family: var(--font-montserrat), sans-serif;
+    font-family: var(--font-cormorant), serif;
   }
   ::selection {
     background-color: color-mix(in srgb, var(--color-gold) 30%, transparent);
@@ -20,11 +20,11 @@
 
 @layer utilities {
   .font-body {
-    font-family: var(--font-montserrat), sans-serif;
+    font-family: var(--font-cormorant), serif;
   }
 
   .font-heading {
-    font-family: var(--font-great-vibes, var(--font-montserrat)), cursive;
+    font-family: var(--font-liana), cursive;
   }
 
   .font-cormorant {

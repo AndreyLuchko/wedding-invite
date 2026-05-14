@@ -1,17 +1,16 @@
-import { Great_Vibes, Cormorant_Infant } from 'next/font/google'
+import { Cormorant_Infant } from 'next/font/google'
 import localFont from 'next/font/local'
-
-const greatVibes = Great_Vibes({
-  weight: '400',
-  subsets: ['latin', 'cyrillic'],
-  variable: '--font-great-vibes',
-})
 
 const cormorantInfant = Cormorant_Infant({
   weight: ['300', '400', '500', '600', '700'],
   style: ['normal', 'italic'],
   subsets: ['latin', 'cyrillic'],
   variable: '--font-cormorant',
+})
+
+const liana = localFont({
+  src: '../../public/fonts/liana.ttf',
+  variable: '--font-liana',
 })
 
 const wolfgang = localFont({
@@ -21,7 +20,7 @@ const wolfgang = localFont({
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={`${greatVibes.variable} ${cormorantInfant.variable} ${wolfgang.variable}`}>
+    <div className={`${cormorantInfant.variable} ${liana.variable} ${wolfgang.variable}`}>
       {children}
     </div>
   )
