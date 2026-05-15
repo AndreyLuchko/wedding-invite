@@ -66,6 +66,13 @@
     "copy": "Copiați",
     "copied": "Copiat!"
   },
+  "countdown": {
+    "title": "Mai sunt până la nuntă",
+    "subtitle": "Vă așteptăm cu nerăbdare",
+    "days": "zile",
+    "hours": "ore",
+    "minutes": "minute"
+  },
   "telegram": {
     "title": "Grup Telegram",
     "description": "Alăturați-vă grupului nostru de Telegram — acolo sunt anunțuri, coordonare și fotografii de la sărbătoare.",

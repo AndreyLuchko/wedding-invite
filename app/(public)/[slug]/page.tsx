@@ -9,6 +9,7 @@ import { DressCodeSection } from '@/components/sections/DressCodeSection'
 import { RSVPSection } from '@/components/sections/RSVPSection'
 import { WishlistSection } from '@/components/sections/WishlistSection'
 import { TelegramSection } from '@/components/sections/TelegramSection'
+import { CountdownSection } from '@/components/sections/CountdownSection'
 import ruMessages from '@/lib/i18n/ru.json'
 import roMessages from '@/lib/i18n/ro.json'
 import type { Language } from '@/lib/types'
@@ -55,6 +56,7 @@ export default async function InvitationPage({
         <RSVPSection guestId={guest.id} />
         <WishlistSection cardNumber={config.card_number ?? ''} />
         <TelegramSection telegramLink={config.telegram_link ?? ''} />
+        <CountdownSection />
       </main>
     </NextIntlClientProvider>
   )
