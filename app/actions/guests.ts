@@ -47,5 +47,6 @@ export async function updateGuestGreeting(
     .eq('id', id)
   if (error) return { success: false, error: error.message }
   revalidatePath('/admin/guests')
+  revalidatePath('/admin/rsvp')
   return { success: true }
 }

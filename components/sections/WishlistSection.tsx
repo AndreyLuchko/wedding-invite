@@ -24,7 +24,7 @@ export function WishlistSection({ cardNumber }: WishlistSectionProps) {
         <h2 className="font-heading text-[42px] md:text-[52px] text-dark text-center mb-3">
           {t('title')}
         </h2>
-        <p className="font-body text-[9px] tracking-[0.08em] text-dark/50 text-center max-w-xs mx-auto mb-10 leading-relaxed">
+        <p className="font-body text-[16px] tracking-[0.08em] text-dark/50 text-center max-w-xs mx-auto mb-10 leading-relaxed">
           {t('description')}
         </p>
       </FadeIn>
@@ -32,11 +32,11 @@ export function WishlistSection({ cardNumber }: WishlistSectionProps) {
       {cardNumber && (
         <FadeIn delay={0.2}>
           <div className="max-w-xs mx-auto">
-            <p className="font-body text-[8px] tracking-[0.25em] uppercase text-dark/40 text-center mb-3">
+            <p className="font-body text-[12px] tracking-[0.25em] uppercase text-dark/40 text-center mb-3">
               {t('card_label')}
             </p>
             <div className="flex items-center justify-between border border-gold/40 px-5 py-4">
-              <span className="font-body text-[15px] tracking-[0.15em] text-dark">
+              <span className="font-body text-[12px] tracking-[0.15em] text-dark">
                 {cardNumber}
               </span>
               <button

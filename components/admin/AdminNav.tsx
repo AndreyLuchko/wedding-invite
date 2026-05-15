@@ -1,16 +1,35 @@
+'use client'
 import Link from 'next/link'
+import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { LogoutButton } from '@/components/admin/LogoutButton'
 
+const navLinks = [
+  { href: '/admin/guests', label: 'Guests' },
+  { href: '/admin/rsvp', label: 'RSVP' },
+]
+
 export function AdminNav() {
+  const pathname = usePathname()
+
   return (
     <nav className="bg-white border-b px-6 py-4 flex items-center gap-6">
-      <span className="font-semibold text-gray-900 mr-4">Wedding Admin</span>
-      <Link href="/admin/guests" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
-        Guests
-      </Link>
-      <Link href="/admin/rsvp" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
-        RSVP
-      </Link>
+      <Image src="/gallery/Logo.png" alt="Logo" width={80} height={80} className="mr-4 object-contain" />
+      {navLinks.map(({ href, label }) => {
+        const active = pathname === href
+        return (
+          <Link
+            key={href}
+            href={href}
+            className={`text-sm transition-colors ${active
+              ? 'text-[#C9A84C] font-semibold border-b-2 border-[#C9A84C] pb-0.5'
+              : 'text-gray-500 hover:text-gray-900'
+              }`}
+          >
+            {label}
+          </Link>
+        )
+      })}
       <LogoutButton />
     </nav>
   )

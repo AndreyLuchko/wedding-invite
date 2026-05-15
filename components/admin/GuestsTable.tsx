@@ -136,8 +136,8 @@ export function GuestsTable({ guests, baseUrl }: GuestsTableProps) {
         </form>
       )}
 
-      <div className="bg-white rounded border overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="bg-white rounded border overflow-x-auto">
+        <table className="w-full min-w-160 text-sm">
           <thead className="bg-gray-50 border-b">
             <tr>
               <th className="text-left px-4 py-3 font-medium text-gray-500">Name</th>
@@ -145,6 +145,7 @@ export function GuestsTable({ guests, baseUrl }: GuestsTableProps) {
               <th className="text-left px-4 py-3 font-medium text-gray-500">Lang</th>
               <th className="text-left px-4 py-3 font-medium text-gray-500">URL</th>
               <th className="text-left px-4 py-3 font-medium text-gray-500">RSVP</th>
+              <th className="text-left px-4 py-3 font-medium text-gray-500">Transfer</th>
               <th className="px-4 py-3" />
             </tr>
           </thead>
@@ -173,6 +174,11 @@ export function GuestsTable({ guests, baseUrl }: GuestsTableProps) {
                     {rsvp?.attending === true  && <span className="text-green-600 text-xs">✓ {rsvp.guest_count} person(s)</span>}
                     {rsvp?.attending === false && <span className="text-red-400 text-xs">✗ Declined</span>}
                   </td>
+                  <td className="px-4 py-3">
+                    {rsvp?.attending === true && rsvp.transport === true  && <span className="text-green-600 text-xs">✓ Yes</span>}
+                    {rsvp?.attending === true && rsvp.transport === false && <span className="text-red-400 text-xs">✗ No</span>}
+                    {(!rsvp || rsvp.attending === false) && <span className="text-gray-300 text-xs">—</span>}
+                  </td>
                   <td className="px-4 py-3 text-right">
                     <div className="flex items-center justify-end gap-2">
                       <button
@@ -194,7 +200,7 @@ export function GuestsTable({ guests, baseUrl }: GuestsTableProps) {
             })}
             {guests.length === 0 && (
               <tr>
-                <td colSpan={6} className="px-4 py-10 text-center text-gray-400 text-sm">
+                <td colSpan={7} className="px-4 py-10 text-center text-gray-400 text-sm">
                   No guests yet. Add your first guest above.
                 </td>
               </tr>

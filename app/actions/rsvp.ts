@@ -5,7 +5,8 @@ import { revalidatePath } from 'next/cache'
 export async function submitRsvp(
   guestId: string,
   attending: boolean,
-  guestCount: number
+  guestCount: number,
+  needsTransport: boolean | null
 ): Promise<{ success: boolean; error?: string }> {
   const supabase = await createClient()
 
@@ -30,6 +31,7 @@ export async function submitRsvp(
     greeting_text: guest.greeting_text,
     attending,
     guest_count: attending ? guestCount : 0,
+    transport:   attending ? needsTransport : null,
   })
 
   if (error) return { success: false, error: error.message }
