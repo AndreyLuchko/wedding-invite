@@ -1,68 +1,49 @@
 'use client'
+import Image from 'next/image'
 import { useTranslations } from 'next-intl'
-import { MapPin } from 'lucide-react'
 import { FadeIn } from './FadeIn'
 
 interface LocationSectionProps {
   venueName: string
   venueAddress: string
-  googleMapsEmbedUrl: string
 }
 
-export function LocationSection({
-  venueName,
-  venueAddress,
-  googleMapsEmbedUrl,
-}: LocationSectionProps) {
+export function LocationSection({ venueName, venueAddress }: LocationSectionProps) {
   const t = useTranslations('location')
   const navigateUrl = `https://maps.google.com/?q=${encodeURIComponent(venueAddress)}`
 
   return (
-    <section className="py-16 px-8 bg-cream">
+    <section className="py-14 px-6 bg-cream">
       <FadeIn>
-        <h2 className="font-heading text-[40px] text-dark text-center mb-1">
+        <h2 className="font-heading text-[42px] md:text-[52px] text-dark text-center mb-2">
           {t('title')}
         </h2>
         {venueName && (
-          <p className="font-heading text-[28px] text-dark text-center mb-2">
+          <p className="font-body text-[20px] text-dark/80 text-center mb-6 mt-6">
             {venueName}
           </p>
         )}
-        {/* <p className="font-body text-[8px] tracking-[0.3em] text-gold uppercase text-center mb-10">
-          {t('subtitle')}
-        </p> */}
       </FadeIn>
 
-      <FadeIn delay={0.2}>
+      <FadeIn delay={0.15}>
         <div className="max-w-lg mx-auto">
-          {googleMapsEmbedUrl ? (
-            <iframe
-              src={googleMapsEmbedUrl}
-              className="w-full h-64 border border-gold/20 mb-6"
-              loading="lazy"
-              allowFullScreen
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Wedding venue"
+          <div className="relative w-full aspect-4/3 overflow-hidden mb-6">
+            <Image
+              src="/gallery/Complexul_Turistic_Costesti_1.png"
+              alt={venueName}
+              fill
+              sizes="(min-width: 1024px) 512px, 100vw"
+              className="object-cover"
             />
-          ) : (
-            <div className="w-full h-64 bg-dark/5 border border-gold/20 flex items-center justify-center mb-6">
-              <MapPin className="w-8 h-8 text-dark/20" />
-            </div>
-          )}
-
-
-          <p className="font-body text-[9px] tracking-[0.1em] text-dark/50 text-center mb-6 leading-relaxed">
-            {venueAddress}
-          </p>
+          </div>
 
           <a
             href={navigateUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 w-full border border-gold/50 px-6 py-4 font-body text-[8px] tracking-[0.3em] uppercase text-dark hover:border-gold hover:text-gold transition-colors"
+            className="font-body text-[24px] text-dark/90 hover:text-dark hover:bg-[#f5f0e8] transition-colors flex items-center justify-center gap-2 w-full border border-[#f5f0e8] bg-white/60"
           >
-            <MapPin className="w-3.5 h-3.5" />
-            {t('navigate')}
+            {t('navigate')} <span className='bold'>→</span>
           </a>
         </div>
       </FadeIn>

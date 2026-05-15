@@ -21,7 +21,7 @@ export function WishlistSection({ cardNumber }: WishlistSectionProps) {
   return (
     <section className="py-16 px-8 bg-cream">
       <FadeIn>
-        <h2 className="font-heading text-[40px] text-dark text-center mb-3">
+        <h2 className="font-heading text-[42px] md:text-[52px] text-dark text-center mb-3">
           {t('title')}
         </h2>
         <p className="font-body text-[9px] tracking-[0.08em] text-dark/50 text-center max-w-xs mx-auto mb-10 leading-relaxed">

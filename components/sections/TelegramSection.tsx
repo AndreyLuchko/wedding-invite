@@ -13,7 +13,7 @@ export function TelegramSection({ telegramLink }: TelegramSectionProps) {
   return (
     <section className="py-16 px-8 bg-white text-center">
       <FadeIn>
-        <h2 className="font-heading text-[40px] text-dark mb-3">
+        <h2 className="font-heading text-[42px] md:text-[52px] text-dark mb-3">
           {t('title')}
         </h2>
         <p className="font-body text-[9px] tracking-[0.08em] text-dark/50 max-w-xs mx-auto mb-10 leading-relaxed">

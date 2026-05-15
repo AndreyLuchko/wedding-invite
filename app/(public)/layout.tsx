@@ -1,7 +1,7 @@
-import { Cormorant_Infant } from 'next/font/google'
+import { Cormorant_Garamond } from 'next/font/google'
 import localFont from 'next/font/local'
 
-const cormorantInfant = Cormorant_Infant({
+const cormorantGaramond = Cormorant_Garamond({
   weight: ['300', '400', '500', '600', '700'],
   style: ['normal', 'italic'],
   subsets: ['latin', 'cyrillic'],
@@ -20,7 +20,7 @@ const wolfgang = localFont({
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={`${cormorantInfant.variable} ${liana.variable} ${wolfgang.variable}`}>
+    <div className={`${cormorantGaramond.variable} ${liana.variable} ${wolfgang.variable}`}>
       {children}
     </div>
   )

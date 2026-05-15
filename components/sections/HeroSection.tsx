@@ -1,195 +1,125 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
-import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { FadeIn } from './FadeIn'
-
-const WEDDING_DATE = new Date('2026-08-23T12:00:00')
-
-function getTimeLeft() {
-  const diff = WEDDING_DATE.getTime() - Date.now()
-  if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 }
-  return {
-    days: Math.floor(diff / 86_400_000),
-    hours: Math.floor((diff % 86_400_000) / 3_600_000),
-    minutes: Math.floor((diff % 3_600_000) / 60_000),
-    seconds: Math.floor((diff % 60_000) / 1_000),
-  }
-}
+import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
 interface HeroSectionProps {
-  greetingText: string
   coupleNames: string
 }
 
-export function HeroSection({ greetingText, coupleNames }: HeroSectionProps) {
+export function HeroSection({ coupleNames }: HeroSectionProps) {
   const t = useTranslations('hero')
-  const [timeLeft, setTimeLeft] = useState(getTimeLeft())
-  const containerRef = useRef<HTMLElement>(null)
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end start'],
-  })
-
-  // Flower parallax: photo moves up slower than scroll
-  const photoY = useTransform(scrollYProgress, [0, 1], ['0%', '-22%'])
-  const photoOpacity = useTransform(scrollYProgress, [0, 0.55], [1, 0])
-
-  // Content: gently lifts and fades as user scrolls
-  const contentY = useTransform(scrollYProgress, [0, 0.6], ['0px', '-28px'])
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-
-  useEffect(() => {
-    const id = setInterval(() => setTimeLeft(getTimeLeft()), 1000)
-    return () => clearInterval(id)
-  }, [])
-
-  const units = [
-    [timeLeft.days, t('countdown.days')],
-    [timeLeft.hours, t('countdown.hours')],
-    [timeLeft.minutes, t('countdown.minutes')],
-    [timeLeft.seconds, t('countdown.seconds')],
-  ] as const
 
   return (
-    <section
-      ref={containerRef}
-      className="bg-cream min-h-svh relative overflow-hidden flex flex-col"
-    >
-      {/* Photo */}
-      <div className="absolute top-0 inset-x-0 flex justify-center" aria-hidden="true">
-        <div className="relative h-105 w-full max-w-xs overflow-hidden bg-cream">
-          <motion.div
-            style={{ y: photoY, opacity: photoOpacity }}
-            className="absolute inset-0  h-[calc(100%+1.5rem)] top-0 md:h-[calc(100%+1.5rem)]"
-          >
-            <Image
-              src="/gallery/wedding_pair_9x16.png"
-              alt=""
-              fill
-              sizes="320px"
-              className="object-cover object-center"
-              priority
-            />
-          </motion.div>
-          <div
-            className="absolute inset-x-0 bottom-0 h-2/3"
-            style={{ background: 'linear-gradient(to bottom, transparent 0%, #FAFAF8 88%)' }}
-          />
-        </div>
+    <section className="bg-cream min-h-svh relative flex flex-col items-center overflow-hidden">
+      {/* Background texture */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        <Image
+          src="/gallery/bg.png"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-top-right"
+          priority
+        />
       </div>
 
-      {/* ── Main content ── */}
-      <div className="relative z-10 flex-1 flex flex-col items-center px-6 pt-52 pb-48 md:justify-center md:pt-[13%] md:pb-56">
-        <div className="w-full max-w-xl mx-auto flex flex-col items-center">
-          <motion.div
-            style={{ y: contentY, opacity: contentOpacity }}
-            className="flex w-full flex-col items-center"
-          >
-            {/* Greeting */}
-            <FadeIn>
-              <p className="font-body font-bold text-[12px] tracking-[0.45em] text-gold mb-8">
-                {greetingText}
-              </p>
-            </FadeIn>
+      {/* Chandelier — slides in from top */}
+      <motion.div
+        className="relative z-10 w-[100vw] max-w-[450px]"
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.9, ease: 'easeOut' }}
+        aria-hidden="true"
+      >
+        <Image
+          src="/gallery/chandelier_1.png"
+          alt=""
+          width={280}
+          height={220}
+          className="w-full h-auto object-contain"
+          priority
+        />
+      </motion.div>
 
-            {/* Couple names */}
-            <FadeIn delay={0.1}>
-              <h1 className="font-wolfgang text-[68px] md:text-[90px] text-dark leading-[1.05] text-center mb-5">
-                {coupleNames}
-              </h1>
-            </FadeIn>
+      {/* Couple names + tagline */}
+      <div className="@container relative z-10 w-full max-w-lg px-5 pt-5 text-center">
+        <motion.h1
+          className="font-wolfgang  text-[68px] text-dark leading-[1.05] mb-4 whitespace-nowrap"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+        >
+          {coupleNames}
+        </motion.h1>
 
-            {/* Gold ornament divider */}
-            <FadeIn delay={0.2}>
-              <div className="flex items-center gap-3 w-40 mb-4 mx-auto">
-                <div className="flex-1 h-px bg-gold/30" />
-                <div className="w-1 h-1 bg-gold rotate-45 shrink-0" />
-                <div className="flex-1 h-px bg-gold/30" />
-              </div>
-            </FadeIn>
-
-            {/* Invitation */}
-            <FadeIn delay={0.25}>
-              <p className="font-body text-sm md:text-base leading-relaxed text-dark/70 text-center max-w-md mb-4">
-                {t('invitation')}
-              </p>
-            </FadeIn>
-
-            {/* Gold ornament divider */}
-            <FadeIn delay={0.3}>
-              <div className="flex items-center gap-3 w-40 mb-4 mx-auto">
-                <div className="flex-1 h-px bg-gold/30" />
-                <div className="w-1 h-1 bg-gold rotate-45 shrink-0" />
-                <div className="flex-1 h-px bg-gold/30" />
-              </div>
-            </FadeIn>
-
-            {/* Date */}
-            <FadeIn delay={0.35}>
-              <p className="font-body text-[12px] tracking-[0.4em] text-dark/45 uppercase mb-4">
-                23 · 08 · 2026
-              </p>
-            </FadeIn>
-
-            {/* Rest */}
-            <FadeIn delay={0.4}>
-              <h3 className="font-cormorant md:text-xl leading-relaxed text-dark/70 text-center max-w-md mb-10 mt-10">
-                {t('rest')}
-              </h3>
-            </FadeIn>
-
-            {/* Countdown */}
-            <FadeIn delay={0.45}>
-              <div className="flex items-end gap-2 mb-10">
-                {units.map(([value, label], i) => (
-                  <div key={String(label)} className="flex items-end gap-2">
-                    {i > 0 && (
-                      <span className="font-heading text-[24px] text-gold/50 mb-2.5">·</span>
-                    )}
-                    <div className="flex flex-col items-center min-w-11">
-                      <span className="font-heading text-[38px] text-dark leading-none tabular-nums">
-                        {String(value).padStart(2, '0')}
-                      </span>
-                      <span className="font-body text-[7px] tracking-[0.2em] text-dark/35 uppercase mt-1">
-                        {label}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
-          </motion.div>
-
-          {/* Scroll indicator */}
-          <FadeIn delay={0.6}>
-            <div className="flex flex-col items-center gap-2">
-              <div className="w-px h-6 bg-linear-to-b from-gold/40 to-transparent" />
-              <motion.span
-                className="font-body text-[7px] tracking-[0.25em] text-dark/30 uppercase"
-                animate={{ opacity: [1, 0.3, 1] }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                {t('scroll')}
-              </motion.span>
-            </div>
-          </FadeIn>
-        </div>
+        <motion.p
+          className="font-body text-[24px] text-black leading-snug whitespace-pre-line"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          {t('tagline')}
+        </motion.p>
       </div>
 
-      <FadeIn delay={0.7} className="absolute inset-x-0 bottom-6 z-20 flex justify-center md:bottom-8">
-        <div className="relative aspect-[47/42] w-[min(56vw,120px)] overflow-hidden">
+      {/* Row: left candelabra · date and time · right candelabra */}
+      <div className="relative z-10 flex-1 flex items-center w-full max-w-lg px-2 py-6">
+        {/* Left candelabra */}
+        <motion.div
+          className="w-[120px] self-center translate-x-[-25%]"
+          initial={{ x: -60, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.25, ease: 'easeOut' }}
+          aria-hidden="true"
+        >
           <Image
-            src="/gallery/Glasses.png"
+            src="/gallery/Candles_1.png"
             alt=""
-            fill
-            sizes="(min-width: 768px) 220px, 56vw"
-            className="object-contain brightness-0 opacity-70"
+            width={130}
+            height={325}
+            className="w-full h-auto object-contain"
           />
+        </motion.div>
+
+        {/* Date and time */}
+        <div className="@container flex-1 min-w-0 flex flex-col items-center text-center px-3">
+          <motion.p
+            className="font-body text-[64px] font-light text-dark leading-none tracking-wide mb-1"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            23.08.26
+          </motion.p>
+
+          <motion.p
+            className="font-body text-[44px] text-dark/65 leading-none tracking-widest"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            17:00
+          </motion.p>
         </div>
-      </FadeIn>
+
+        {/* Right candelabra — mirrored */}
+        <motion.div
+          className="w-[120px] self-center translate-x-[25%]"
+          initial={{ x: 60, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.25, ease: 'easeOut' }}
+          aria-hidden="true"
+        >
+          <Image
+            src="/gallery/Candles_1.png"
+            alt=""
+            width={130}
+            height={325}
+            className="w-full h-auto object-contain"
+          />
+        </motion.div>
+      </div>
     </section>
   )
 }

@@ -22,7 +22,7 @@ export function LoveStorySection() {
   return (
     <section className="py-24 px-6 bg-cream">
       <FadeIn>
-        <h2 className="font-heading text-4xl text-dark text-center mb-12">
+        <h2 className="font-heading text-[42px] md:text-[52px] text-dark text-center mb-12">
           {t('title')}
         </h2>
       </FadeIn>

@@ -3,9 +3,9 @@ import { NextIntlClientProvider } from 'next-intl'
 import { createClient } from '@/lib/supabase/server'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { QuoteSection } from '@/components/sections/QuoteSection'
-import { FlowerDivider } from '@/components/sections/FlowerDivider'
 import { TimelineSection } from '@/components/sections/TimelineSection'
 import { LocationSection } from '@/components/sections/LocationSection'
+import { DressCodeSection } from '@/components/sections/DressCodeSection'
 import { RSVPSection } from '@/components/sections/RSVPSection'
 import { WishlistSection } from '@/components/sections/WishlistSection'
 import { TelegramSection } from '@/components/sections/TelegramSection'
@@ -41,24 +41,19 @@ export default async function InvitationPage({
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages[locale]}>
-      <main>
+      <main className="max-w-[450px] mx-auto">
         <HeroSection
-          greetingText={guest.greeting_text}
           coupleNames={config.couple_names ?? 'Pavel & Olesya'}
         />
-        <QuoteSection />
-        <FlowerDivider src="/gallery/flowers_4x3.png" />
-        <TimelineSection />
-        <FlowerDivider src="/gallery/flowers_4x3.png" flip />
+        <QuoteSection greetingText={guest.greeting_text} />
         <LocationSection
           venueName={config.venue_name ?? ''}
           venueAddress={config.venue_address ?? ''}
-          googleMapsEmbedUrl={config.google_maps_embed_url ?? ''}
         />
-        <FlowerDivider src="/gallery/flowers_4x3.png" />
+        <DressCodeSection />
+        <TimelineSection />
         <RSVPSection guestId={guest.id} />
         <WishlistSection cardNumber={config.card_number ?? ''} />
-        <FlowerDivider src="/gallery/flowers_4x3.png" />
         <TelegramSection telegramLink={config.telegram_link ?? ''} />
       </main>
     </NextIntlClientProvider>

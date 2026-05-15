@@ -1,6 +1,7 @@
 {
   "hero": {
-    "invitation": "Vă invităm din toată inima să vă bucurați alături de noi de nunta noastră!",
+    "invitation": "Din toată inima vă invităm să împărțiți cu noi această zi caldă și deosebită, plină de dragoste, fericire și emoții sincere.",
+    "tagline": "Acolo unde sunt doi există deja o lume întreagă",
     "countdown": {
       "days": "zile",
       "hours": "ore",
@@ -11,12 +12,17 @@
     "scroll": "Derulează"
   },
   "quote": {
-    "text": "Acolo unde sunt doi — există deja o lume întreagă"
+    "text": "Acolo unde sunt doi — există deja o lume întreagă",
+    "dear": "Dragi",
+    "month": "August 2026"
   },
   "love_story": { "title": "Povestea noastră" },
+  "dress_code": {
+    "title": "Dress code",
+    "description": "Ne-am străduit mult să facem sărbătoarea frumoasă și vom fi bucuroși dacă în ținutele voastre veți susține paleta de culori a nunții noastre, preferând tonurile neutre."
+  },
   "timeline": {
-    "title": "Programul zilei",
-    "subtitle": "Programul sărbătorii",
+    "title": "Planul serii",
     "ceremony": "Ceremonie",
     "ceremony_sub": "Înregistrarea oficială",
     "aperitif": "Aperitiv",
@@ -33,7 +39,7 @@
   "location": {
     "title": "Locul evenimentului",
     "subtitle": "Unde ne găsiți",
-    "navigate": "Deschide în navigator"
+    "navigate": "pe hartă"
   },
   "rsvp": {
     "title": "Veți fi cu noi?",
