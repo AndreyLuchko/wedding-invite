@@ -29,9 +29,14 @@ export function TimelineSection() {
           alt=""
           fill
           sizes="100vw"
-          className="object-cover"
+          className="object-cover opacity-60"
         />
       </div>
+
+      {/* Gradient fade — top */}
+      <div className="absolute inset-x-0 top-0 h-32 z-1 bg-linear-to-b from-cream to-transparent pointer-events-none" aria-hidden="true" />
+      {/* Gradient fade — bottom */}
+      <div className="absolute inset-x-0 bottom-0 h-32 z-1 bg-linear-to-t from-cream to-transparent pointer-events-none" aria-hidden="true" />
 
       {/* Main content */}
       <div className="relative z-10 max-w-sm mx-auto">
@@ -88,14 +93,14 @@ export function TimelineSection() {
               <div className="w-3 h-3 rounded-full bg-dark" />
             </motion.div>
             <motion.div className="pl-4" {...fadeIn(0)}>
-              <p className="font-body text-[16px] text-dark leading-snug">
+              <p className="font-body text-[20px] text-dark leading-tight">
                 {t('departure_time')} {t('departure')}
               </p>
             </motion.div>
 
             {/* Row 2: Церемонія 17:00 | dot | arch */}
             <motion.div className="flex justify-end pr-4" {...fadeIn(0)}>
-              <p className="font-body text-[16px] text-dark leading-snug text-right">
+              <p className="font-body text-[20px] text-dark leading-tight text-right">
                 {t('ceremony')} {t('ceremony_time')}
               </p>
             </motion.div>
@@ -126,14 +131,14 @@ export function TimelineSection() {
               <div className="w-3 h-3 rounded-full bg-dark" />
             </motion.div>
             <motion.div className="pl-4" {...fadeIn(0)}>
-              <p className="font-body text-[16px] text-dark leading-snug">
+              <p className="font-body text-[20px] text-dark leading-tight">
                 {t('banquet_time')} {t('banquet')}
               </p>
             </motion.div>
 
             {/* Row 4: Весільний торт 00:00 | dot | Cake_2 */}
             <motion.div className="flex justify-end pr-4" {...fadeIn(0)}>
-              <p className="font-body text-[15px] text-dark leading-snug text-right">
+              <p className="font-body text-[20px] text-dark leading-tight text-right">
                 {t('cake')} {t('cake_time')}
               </p>
             </motion.div>

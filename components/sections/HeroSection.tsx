@@ -54,7 +54,7 @@ export function HeroSection({ coupleNames }: HeroSectionProps) {
         </motion.h1>
 
         <motion.p
-          className="font-body text-[24px] text-black leading-snug whitespace-pre-line"
+          className="font-body text-[24px] text-black leading-tight whitespace-pre-line"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -83,9 +83,9 @@ export function HeroSection({ coupleNames }: HeroSectionProps) {
         </motion.div>
 
         {/* Date and time */}
-        <div className="@container flex-1 min-w-0 flex flex-col items-center text-center px-3">
+        <div className="@container flex-1 min-w-0 flex flex-col items-center text-center px-3 pb-30">
           <motion.p
-            className="font-body text-[64px] font-light text-dark leading-none tracking-wide mb-1"
+            className="font-body text-[64px] font-normal text-black leading-none tracking-wide mb-1"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -94,7 +94,7 @@ export function HeroSection({ coupleNames }: HeroSectionProps) {
           </motion.p>
 
           <motion.p
-            className="font-body text-[44px] text-dark/65 leading-none tracking-widest"
+            className="font-body text-[44px] text-black leading-none tracking-widest"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}

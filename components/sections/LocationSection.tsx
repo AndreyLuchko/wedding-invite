@@ -19,7 +19,7 @@ export function LocationSection({ venueName, venueAddress }: LocationSectionProp
           {t('title')}
         </h2>
         {venueName && (
-          <p className="font-body text-[20px] text-dark/80 text-center mb-6 mt-6">
+          <p className="font-body text-[20px] text-dark/80 leading-tight text-center mb-6 mt-6">
             {venueName}
           </p>
         )}
@@ -41,7 +41,7 @@ export function LocationSection({ venueName, venueAddress }: LocationSectionProp
             href={navigateUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-body text-[24px] text-dark/90 hover:text-dark hover:bg-[#f5f0e8] transition-colors flex items-center justify-center gap-2 w-full border border-[#f5f0e8] bg-white/60"
+            className="font-body text-[20px] text-dark/90 hover:text-dark bg-[#f5f0e8] transition-colors flex items-center justify-center gap-2 w-full border border-[#f5f0e8] py-2 hover:bg-[#f5f0e8]/80"
           >
             {t('navigate')} <span className='bold'>→</span>
           </a>

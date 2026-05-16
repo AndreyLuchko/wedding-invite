@@ -39,7 +39,7 @@ export function DressCodeSection() {
         <h2 className="font-heading text-[42px] md:text-[52px] text-dark mb-5">
           {t('title')}
         </h2>
-        <p className="font-body text-[16px] text-dark/80 leading-relaxed max-w-xs mx-auto mb-10">
+        <p className="font-body text-[20px] text-dark/80 leading-tight max-w-xs mx-auto mb-10">
           {t('description')}
         </p>
         <div className="flex justify-center items-center gap-6">

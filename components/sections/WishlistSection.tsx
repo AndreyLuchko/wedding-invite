@@ -19,12 +19,12 @@ export function WishlistSection({ cardNumber }: WishlistSectionProps) {
   }
 
   return (
-    <section className="py-16 px-8 bg-cream">
+    <section className="py-16 px-8 bg-white">
       <FadeIn>
         <h2 className="font-heading text-[42px] md:text-[52px] text-dark text-center mb-3">
           {t('title')}
         </h2>
-        <p className="font-body text-[16px] tracking-[0.08em] text-dark/50 text-center max-w-xs mx-auto mb-10 leading-relaxed">
+        <p className="font-body text-[20px] text-dark/50 text-center max-w-xs mx-auto mb-10 leading-tight">
           {t('description')}
         </p>
       </FadeIn>

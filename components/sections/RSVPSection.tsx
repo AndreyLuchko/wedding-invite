@@ -39,12 +39,12 @@ export function RSVPSection({ guestId }: RSVPSectionProps) {
   }
 
   return (
-    <section className="py-16 px-8 bg-white">
+    <section className="py-16 px-8">
       <FadeIn>
         <h2 className="font-heading text-[42px] md:text-[52px] text-dark text-center mb-3">
           {t('title')}
         </h2>
-        <p className="font-body text-[16px] tracking-[0.08em] text-[#8B4050] text-center mb-8 leading-relaxed">
+        <p className="font-body text-[20px] text-[#8B4050] text-center mb-8 leading-tight">
           {t('deadline')}
         </p>
       </FadeIn>

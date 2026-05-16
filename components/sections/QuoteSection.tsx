@@ -36,9 +36,10 @@ export function QuoteSection({ greetingText }: QuoteSectionProps) {
             <br />
             {greetingText}
           </h2>
-          <p className="font-body text-[16px] text-[#8B4050] leading-relaxed max-w-xs mx-auto mb-8 px-6">
+          <p className="font-body text-[20px] text-[#8B4050] leading-tight max-w-xs mx-auto mb-8 mt-8 px-6">
             {tH('invitation')}
           </p>
+
         </FadeIn>
 
         {/* Calendar image + decorations */}
@@ -61,7 +62,7 @@ export function QuoteSection({ greetingText }: QuoteSectionProps) {
           </motion.div>
 
           {/* Calendar — top-aligned */}
-          <FadeIn delay={0.1} className="self-start shrink-0 w-[44vw] max-w-55">
+          <FadeIn delay={0.1} className="self-start shrink-0 w-[60vw] max-w-60">
             <Image
               src="/gallery/Calendar_1.png"
               alt="August 23, 2026"
