@@ -48,7 +48,7 @@ export function HeroSection({ coupleNames }: HeroSectionProps) {
       {/* Couple names + tagline */}
       <div className="@container relative z-10 w-full max-w-lg px-5 pt-5 text-center">
         <motion.h1
-          className="font-wolfgang  text-[68px] text-dark leading-[1.05] mb-4 whitespace-nowrap"
+          className="font-wolfgang text-[clamp(2rem,14vw,4.25rem)] text-dark leading-[1.05] mb-4 whitespace-nowrap"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
@@ -88,7 +88,7 @@ export function HeroSection({ coupleNames }: HeroSectionProps) {
         {/* Date and time */}
         <div className="@container flex-1 min-w-0 flex flex-col items-center text-center px-3 pb-30">
           <motion.p
-            className="font-body text-[64px] font-normal text-black leading-none tracking-wide mb-1"
+            className="font-body text-[clamp(1.9rem,13vw,4rem)] font-normal text-black leading-none tracking-wide mb-1"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -97,7 +97,7 @@ export function HeroSection({ coupleNames }: HeroSectionProps) {
           </motion.p>
 
           <motion.p
-            className="font-body text-[44px] text-black leading-none tracking-widest"
+            className="font-body text-[clamp(1.3rem,9vw,2.75rem)] text-black leading-none tracking-widest"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
