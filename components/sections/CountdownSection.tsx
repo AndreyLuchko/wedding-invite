@@ -27,7 +27,7 @@ export function CountdownSection() {
   return (
     <section className="py-16 px-8 bg-white text-center">
       <FadeIn>
-        <h2 className="font-heading text-[42px] md:text-[52px] text-dark mb-10 whitespace-nowrap">
+        <h2 className="font-heading text-[38px] md:text-[48px] text-dark mb-10 whitespace-nowrap">
           {t('title')}
         </h2>
 

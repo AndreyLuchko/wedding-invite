@@ -24,6 +24,9 @@ export function HeroSection({ coupleNames }: HeroSectionProps) {
         />
       </div>
 
+      {/* Gradient fade — bottom */}
+      <div className="absolute inset-x-0 bottom-0 h-40 z-1 bg-linear-to-t from-cream to-transparent pointer-events-none" aria-hidden="true" />
+
       {/* Chandelier — slides in from top */}
       <motion.div
         className="relative z-10 w-[100vw] max-w-[450px]"

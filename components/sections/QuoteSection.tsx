@@ -28,6 +28,11 @@ export function QuoteSection({ greetingText }: QuoteSectionProps) {
         />
       </div>
 
+      {/* Gradient fade — top */}
+      <div className="absolute inset-x-0 top-0 h-32 z-1 bg-linear-to-b from-cream to-transparent pointer-events-none" aria-hidden="true" />
+      {/* Gradient fade — bottom */}
+      <div className="absolute inset-x-0 bottom-0 h-32 z-1 bg-linear-to-t from-cream to-transparent pointer-events-none" aria-hidden="true" />
+
       <div className="relative z-10">
         {/* Heading + invitation text */}
         <FadeIn>
@@ -62,7 +67,7 @@ export function QuoteSection({ greetingText }: QuoteSectionProps) {
           </motion.div>
 
           {/* Calendar — top-aligned */}
-          <FadeIn delay={0.1} className="self-start shrink-0 w-[60vw] max-w-60">
+          <FadeIn delay={0.1} className="self-start shrink-0 w-[65vw] max-w-65">
             <Image
               src="/gallery/Calendar_1.png"
               alt="August 23, 2026"
