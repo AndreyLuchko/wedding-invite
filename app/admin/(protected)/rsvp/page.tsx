@@ -4,22 +4,30 @@ import { createClient } from '@/lib/supabase/server'
 export default async function RsvpPage() {
   const supabase = await createClient()
 
-  const { data: responses } = await supabase
+  const { data: rawResponses } = await supabase
     .from('rsvp_responses')
     .select('*, guests(name, greeting_text)')
     .order('submitted_at', { ascending: false })
+
+  // deduplicate: keep the latest response per guest
+  const seen = new Set<string>()
+  const responses = (rawResponses ?? []).filter(r => {
+    if (seen.has(r.guest_id)) return false
+    seen.add(r.guest_id)
+    return true
+  })
 
   const { count: totalGuests } = await supabase
     .from('guests')
     .select('*', { count: 'exact', head: true })
 
-  const confirmed    = (responses ?? []).filter(r =>  r.attending).length
-  const declined     = (responses ?? []).filter(r => !r.attending).length
-  const pending      = (totalGuests ?? 0) - (responses?.length ?? 0)
-  const totalPeople  = (responses ?? [])
+  const confirmed    = responses.filter(r =>  r.attending).length
+  const declined     = responses.filter(r => !r.attending).length
+  const pending      = (totalGuests ?? 0) - responses.length
+  const totalPeople  = responses
     .filter(r => r.attending)
     .reduce((sum, r) => sum + r.guest_count, 0)
-  const needsTransfer = (responses ?? [])
+  const needsTransfer = responses
     .filter(r => r.transport === true)
     .reduce((sum, r) => sum + r.guest_count, 0)
 
@@ -68,7 +76,7 @@ export default async function RsvpPage() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {(responses ?? []).map(r => (
+            {responses.map(r => (
               <tr key={r.id} className="hover:bg-gray-50">
                 <td className="px-4 py-3 font-medium text-gray-900">
                   {(r.guests as { name: string; greeting_text: string } | null)?.name ?? '—'}
@@ -96,7 +104,7 @@ export default async function RsvpPage() {
                 </td>
               </tr>
             ))}
-            {(responses ?? []).length === 0 && (
+            {responses.length === 0 && (
               <tr>
                 <td colSpan={6} className="px-4 py-10 text-center text-gray-400 text-sm">
                   No responses yet.

@@ -48,7 +48,7 @@ export function HeroSection({ coupleNames }: HeroSectionProps) {
       {/* Couple names + tagline */}
       <div className="@container relative z-10 w-full max-w-lg px-5 pt-5 text-center">
         <motion.h1
-          className="font-wolfgang text-[clamp(2rem,14vw,4.25rem)] text-dark leading-[1.05] mb-4 whitespace-nowrap"
+          className="font-wolfgang text-[clamp(3rem,14vw,4.5rem)] text-dark leading-[1.05] mb-4 whitespace-nowrap"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
@@ -57,7 +57,7 @@ export function HeroSection({ coupleNames }: HeroSectionProps) {
         </motion.h1>
 
         <motion.p
-          className="font-body text-[24px] text-black leading-tight whitespace-pre-line"
+          className="font-body text-[clamp(20px,5.5vw,24px)] text-black leading-tight whitespace-pre-line"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -70,7 +70,7 @@ export function HeroSection({ coupleNames }: HeroSectionProps) {
       <div className="relative z-10 flex-1 flex items-center w-full max-w-lg px-2 py-6">
         {/* Left candelabra */}
         <motion.div
-          className="w-[120px] self-center translate-x-[-25%]"
+          className="w-[clamp(100px,calc(51px+15.4vw),120px)] self-center translate-x-[-25%]"
           initial={{ x: -60, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.25, ease: 'easeOut' }}
@@ -108,7 +108,7 @@ export function HeroSection({ coupleNames }: HeroSectionProps) {
 
         {/* Right candelabra — mirrored */}
         <motion.div
-          className="w-[120px] self-center translate-x-[25%]"
+          className="w-[clamp(100px,calc(51px+15.4vw),120px)] self-center translate-x-[25%]"
           initial={{ x: 60, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.25, ease: 'easeOut' }}

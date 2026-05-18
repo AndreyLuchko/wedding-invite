@@ -15,7 +15,7 @@ export function LocationSection({ venueName, venueAddress }: LocationSectionProp
   return (
     <section className="py-14 px-6 bg-cream">
       <FadeIn>
-        <h2 className="font-heading text-[42px] md:text-[52px] text-dark text-center mb-2">
+        <h2 className="font-heading text-[42px] md:text-[52px] text-dark leading-tight text-center mb-2">
           {t('title')}
         </h2>
         {venueName && (

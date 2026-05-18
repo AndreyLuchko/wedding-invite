@@ -32,6 +32,12 @@ export default async function InvitationPage({
 
   if (!guest) notFound()
 
+  const { data: existingRsvp } = await supabase
+    .from('rsvp_responses')
+    .select('id')
+    .eq('guest_id', guest.id)
+    .maybeSingle()
+
   const { data: configRows } = await supabase.from('site_config').select('*')
   const config: Record<string, string> = {}
   for (const row of configRows ?? []) {
@@ -53,7 +59,7 @@ export default async function InvitationPage({
         />
         <DressCodeSection />
         <TimelineSection />
-        <RSVPSection guestId={guest.id} />
+        <RSVPSection guestId={guest.id} alreadySubmitted={!!existingRsvp} />
         <WishlistSection cardNumber={config.card_number ?? ''} />
         <TelegramSection telegramLink={config.telegram_link ?? ''} />
         <CountdownSection />

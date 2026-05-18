@@ -6,14 +6,17 @@ import { submitRsvp } from '@/app/actions/rsvp'
 
 interface RSVPSectionProps {
   guestId: string
+  alreadySubmitted?: boolean
 }
 
-export function RSVPSection({ guestId }: RSVPSectionProps) {
+export function RSVPSection({ guestId, alreadySubmitted = false }: RSVPSectionProps) {
   const t = useTranslations('rsvp')
   const [attending, setAttending] = useState<boolean | null>(null)
   const [guestCount, setGuestCount] = useState(1)
   const [needsTransport, setNeedsTransport] = useState<boolean | null>(null)
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'already'>('idle')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'already'>(
+    alreadySubmitted ? 'already' : 'idle'
+  )
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -27,12 +30,16 @@ export function RSVPSection({ guestId }: RSVPSectionProps) {
   }
 
   if (status === 'success' || status === 'already') {
+    const message = status === 'already'
+      ? t('already_submitted')
+      : attending
+        ? t('success')
+        : t('success_decline')
+
     return (
       <section className="py-16 px-8 bg-white text-center">
         <FadeIn>
-          <p className="font-heading text-[32px] text-dark">
-            {status === 'success' ? t('success') : t('already_submitted')}
-          </p>
+          <p className="font-heading text-[32px] text-dark">{message}</p>
         </FadeIn>
       </section>
     )
@@ -41,7 +48,7 @@ export function RSVPSection({ guestId }: RSVPSectionProps) {
   return (
     <section className="py-16 px-8">
       <FadeIn>
-        <h2 className="font-heading text-[42px] md:text-[52px] text-dark text-center mb-3">
+        <h2 className="font-heading text-[42px] md:text-[52px] text-dark text-center leading-tight mb-3">
           {t('title')}
         </h2>
         <p className="font-body text-[20px] text-[#8B4050] text-center mb-8 leading-tight">

@@ -48,51 +48,53 @@ export function QuoteSection({ greetingText }: QuoteSectionProps) {
         </FadeIn>
 
         {/* Calendar image + decorations */}
-        <div ref={rowRef} className="flex items-start justify-center overflow-hidden">
-          {/* Cake — smaller, top-aligned, slides in from left */}
-          <motion.div
-            className="shrink-0 w-[22vw] max-w-30 self-start"
-            initial={{ x: -70, opacity: 0 }}
-            animate={inView ? { x: 0, opacity: 1 } : { x: -70, opacity: 0 }}
-            transition={{ duration: 0.75, ease: 'easeOut' }}
-            aria-hidden="true"
-          >
-            <Image
-              src="/gallery/Cake_1.png"
-              alt=""
-              width={120}
-              height={160}
-              className="w-full h-auto object-contain object-top"
-            />
-          </motion.div>
+        <div ref={rowRef} className="flex justify-center overflow-hidden pb-20">
+          {/* Calendar — anchor block; Cake and Glasses are absolutely positioned relative to it */}
+          <div className="relative w-[65vw] max-w-65">
+            <FadeIn delay={0.1}>
+              <Image
+                src="/gallery/Calendar_1.png"
+                alt="August 23, 2026"
+                width={220}
+                height={270}
+                className="w-full h-auto object-contain"
+              />
+            </FadeIn>
 
-          {/* Calendar — top-aligned */}
-          <FadeIn delay={0.1} className="self-start shrink-0 w-[65vw] max-w-65">
-            <Image
-              src="/gallery/Calendar_1.png"
-              alt="August 23, 2026"
-              width={220}
-              height={270}
-              className="w-full h-auto object-contain"
-            />
-          </FadeIn>
+            {/* Cake — absolute, anchored to Calendar block, slides in from left */}
+            <motion.div
+              className="absolute top-0 right-full w-[30vw] max-w-30"
+              initial={{ x: -70, opacity: 0 }}
+              animate={inView ? { x: 0, opacity: 1 } : { x: -70, opacity: 0 }}
+              transition={{ duration: 0.75, ease: 'easeOut' }}
+              aria-hidden="true"
+            >
+              <Image
+                src="/gallery/Cake_1.png"
+                alt=""
+                width={120}
+                height={160}
+                className="w-full h-auto object-contain object-top"
+              />
+            </motion.div>
 
-          {/* Glasses — 2x bigger, bottom-aligned, slides in from right */}
-          <motion.div
-            className="shrink-0 w-[56vw] max-w-34 self-end pt-16 pb-16"
-            initial={{ x: 70, opacity: 0 }}
-            animate={inView ? { x: 0, opacity: 1 } : { x: 70, opacity: 0 }}
-            transition={{ duration: 0.75, ease: 'easeOut', delay: 0.2 }}
-            aria-hidden="true"
-          >
-            <Image
-              src="/gallery/Glasses_1.png"
-              alt=""
-              width={290}
-              height={380}
-              className="w-full h-auto object-contain object-bottom"
-            />
-          </motion.div>
+            {/* Glasses — absolute, anchored to Calendar block, slides in from right */}
+            <motion.div
+              className="absolute -bottom-15 left-[83%] w-[35vw] max-w-35"
+              initial={{ x: 70, opacity: 0 }}
+              animate={inView ? { x: 0, opacity: 1 } : { x: 70, opacity: 0 }}
+              transition={{ duration: 0.75, ease: 'easeOut', delay: 0.2 }}
+              aria-hidden="true"
+            >
+              <Image
+                src="/gallery/Glasses_1.png"
+                alt=""
+                width={290}
+                height={380}
+                className="w-full h-auto object-contain object-bottom"
+              />
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

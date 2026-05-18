@@ -42,7 +42,7 @@ export function DressCodeSection() {
         <p className="font-body text-[20px] text-dark/80 leading-tight max-w-xs mx-auto mb-10">
           {t('description')}
         </p>
-        <div className="flex justify-center items-center gap-6">
+        <div className="flex justify-center items-center gap-4">
           {SWATCHES.map((color) => (
             <SwatchItem key={color} color={color} />
           ))}

@@ -42,7 +42,7 @@ export function TimelineSection() {
       <div className="relative z-10 max-w-sm mx-auto">
         {/* Title — centered, alone */}
         <motion.h2
-          className="font-heading text-[42px] md:text-[52px] text-dark text-center mb-24"
+          className="font-heading text-[42px] md:text-[52px] text-dark text-center mb-30"
           {...fadeIn(0)}
         >
           {t('title')}
