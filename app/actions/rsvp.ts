@@ -1,5 +1,5 @@
 'use server'
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { revalidatePath } from 'next/cache'
 
 export async function submitRsvp(
@@ -8,7 +8,7 @@ export async function submitRsvp(
   guestCount: number,
   needsTransport: boolean | null
 ): Promise<{ success: boolean; error?: string }> {
-  const supabase = await createClient()
+  const supabase = createAdminClient()
 
   const { data: existing } = await supabase
     .from('rsvp_responses')

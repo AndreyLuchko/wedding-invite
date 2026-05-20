@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { QuoteSection } from '@/components/sections/QuoteSection'
 import { TimelineSection } from '@/components/sections/TimelineSection'
@@ -32,7 +33,8 @@ export default async function InvitationPage({
 
   if (!guest) notFound()
 
-  const { data: existingRsvp } = await supabase
+  const adminSupabase = createAdminClient()
+  const { data: existingRsvp } = await adminSupabase
     .from('rsvp_responses')
     .select('id')
     .eq('guest_id', guest.id)
