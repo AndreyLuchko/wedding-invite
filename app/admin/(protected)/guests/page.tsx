@@ -13,6 +13,7 @@ export default async function GuestsPage() {
   const { data: guests, error } = await supabase
     .from('guests')
     .select('*, rsvp_responses(*)')
+    .order('submitted_at', { ascending: false, referencedTable: 'rsvp_responses' })
     .order('created_at', { ascending: false })
 
   if (error) console.error('Failed to load guests:', error.message)
