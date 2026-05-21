@@ -37,5 +37,6 @@ export async function submitRsvp(
   if (error) return { success: false, error: error.message }
 
   revalidatePath('/admin/rsvp')
+  revalidatePath('/admin/guests')
   return { success: true }
 }

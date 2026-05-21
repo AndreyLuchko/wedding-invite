@@ -10,17 +10,21 @@ export default async function GuestsPage() {
   const protocol     = host.includes('localhost') ? 'http' : 'https'
   const baseUrl      = `${protocol}://${host}`
 
-  const { data: guests, error } = await supabase
-    .from('guests')
-    .select('*, rsvp_responses(*)')
-    .order('submitted_at', { ascending: false, referencedTable: 'rsvp_responses' })
-    .order('created_at', { ascending: false })
+  const [{ data: guests, error }, { data: rsvps }] = await Promise.all([
+    supabase.from('guests').select('*').order('created_at', { ascending: false }),
+    supabase.from('rsvp_responses').select('*'),
+  ])
 
   if (error) console.error('Failed to load guests:', error.message)
 
+  const guestsWithRsvp: GuestWithRsvp[] = (guests ?? []).map(g => ({
+    ...g,
+    rsvp_responses: (rsvps ?? []).filter(r => r.guest_id === g.id),
+  }))
+
   return (
     <div className="max-w-4xl mx-auto px-6 py-8">
-      <GuestsTable guests={(guests as GuestWithRsvp[]) ?? []} baseUrl={baseUrl} />
+      <GuestsTable guests={guestsWithRsvp} baseUrl={baseUrl} />
     </div>
   )
 }
