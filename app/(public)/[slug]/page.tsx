@@ -1,7 +1,40 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
+
+const ogImage = '/gallery/Logo_1.png'
+const defaultDescription =
+  'От всей души приглашаем Вас разделить с нами этот тёплый и особенный день, наполненный любовью, счастьем и искренними эмоциями.'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const supabase = await createClient()
+  const { data: configRows } = await supabase.from('site_config').select('*')
+  const config: Record<string, string> = {}
+  for (const row of configRows ?? []) config[row.key] = row.value
+
+  const coupleNames = config.couple_names ?? 'Pavel & Olesya'
+  const title = `${coupleNames} — Свадебное приглашение`
+
+  return {
+    title,
+    description: defaultDescription,
+    openGraph: {
+      title,
+      description: defaultDescription,
+      type: 'website',
+      locale: 'ru_RU',
+      images: [{ url: ogImage, alt: `${coupleNames} — Wedding` }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: defaultDescription,
+      images: [ogImage],
+    },
+  }
+}
 import { HeroSection } from '@/components/sections/HeroSection'
 import { QuoteSection } from '@/components/sections/QuoteSection'
 import { TimelineSection } from '@/components/sections/TimelineSection'
