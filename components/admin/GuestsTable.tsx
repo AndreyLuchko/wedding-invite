@@ -109,13 +109,13 @@ export function GuestsTable({ guests, baseUrl }: GuestsTableProps) {
             required
             className="flex-1 border border-gray-300 px-3 py-2 text-sm rounded outline-none focus:border-gray-500"
           />
-          <input
-            type="text"
+          <textarea
             placeholder="Greeting text"
             value={newGreeting}
             onChange={e => setNewGreeting(e.target.value)}
             required
-            className="flex-1 border border-gray-300 px-3 py-2 text-sm rounded outline-none focus:border-gray-500"
+            rows={2}
+            className="flex-1 border border-gray-300 px-3 py-2 text-sm rounded outline-none focus:border-gray-500 resize-none"
           />
           <select
             value={newLang}
@@ -233,13 +233,13 @@ export function GuestsTable({ guests, baseUrl }: GuestsTableProps) {
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-500 mb-1">Greeting text</label>
-                <input
-                  type="text"
+                <textarea
                   value={editGreeting}
                   onChange={e => setEditGreeting(e.target.value)}
                   required
                   autoFocus
-                  className="w-full border border-gray-300 px-3 py-2 text-sm rounded outline-none focus:border-gray-500"
+                  rows={3}
+                  className="w-full border border-gray-300 px-3 py-2 text-sm rounded outline-none focus:border-gray-500 resize-none"
                 />
               </div>
               {editError && <p className="text-red-500 text-xs">{editError}</p>}

@@ -10,7 +10,6 @@ interface QuoteSectionProps {
 }
 
 export function QuoteSection({ greetingText }: QuoteSectionProps) {
-  const tQ = useTranslations('quote')
   const tH = useTranslations('hero')
   const rowRef = useRef<HTMLDivElement>(null)
   const inView = useInView(rowRef, { once: true, margin: '-60px 0px 0px 0px' })
@@ -37,9 +36,9 @@ export function QuoteSection({ greetingText }: QuoteSectionProps) {
         {/* Heading + invitation text */}
         <FadeIn>
           <h2 className="font-heading text-[42px] md:text-[52px] text-dark leading-[1.15] mb-5 px-6">
-            {tQ('dear')}
-            <br />
-            {greetingText}
+            {greetingText.split('\n').map((line, i, arr) => (
+              <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+            ))}
           </h2>
           <p className="font-body text-[20px] text-[#8B4050] leading-tight max-w-xs mx-auto mb-8 mt-8 px-6">
             {tH('invitation')}
