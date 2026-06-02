@@ -34,7 +34,7 @@ export default function LoginPage() {
     <div className="flex items-center justify-center min-h-screen px-6">
       <div className="w-full max-w-sm">
         <div className="flex justify-center mb-6">
-          <Image src="/gallery/Logo_1.png" alt="Logo" width={80} height={80} className="object-contain" />
+          <Image src="/gallery/Logo_2.png" alt="Logo" width={80} height={80} className="object-contain" />
         </div>
         <h1 className="font-sans text-3xl font-semibold text-gray-900 text-center mb-8">Sign In</h1>
         <form onSubmit={handleSubmit} className="space-y-4">

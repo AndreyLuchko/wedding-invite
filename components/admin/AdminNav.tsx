@@ -14,7 +14,7 @@ export function AdminNav() {
 
   return (
     <nav className="bg-white border-b px-6 py-4 flex items-center gap-6">
-      <Image src="/gallery/Logo_1.png" alt="Logo" width={80} height={80} className="mr-4 object-contain" loading="eager" />
+      <Image src="/gallery/Logo_2.png" alt="Logo" width={80} height={80} className="mr-4 object-contain" loading="eager" />
       {navLinks.map(({ href, label }) => {
         const active = pathname === href
         return (

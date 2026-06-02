@@ -4,7 +4,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 
-const ogImage = '/gallery/Logo_1.png'
+const ogImage = '/gallery/Logo_2.png'
 const defaultDescription =
   'От всей души приглашаем Вас разделить с нами этот тёплый и особенный день, наполненный любовью, счастьем и искренними эмоциями.'
 
@@ -35,6 +35,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   }
 }
+import { MusicPlayer } from '@/components/ui/MusicPlayer'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { QuoteSection } from '@/components/sections/QuoteSection'
 import { TimelineSection } from '@/components/sections/TimelineSection'
@@ -83,7 +84,10 @@ export default async function InvitationPage({
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages[locale]}>
-      <main className="max-w-[450px] mx-auto">
+      <main className="relative max-w-[450px] mx-auto">
+        <div className="absolute top-4 right-3 z-50">
+          <MusicPlayer />
+        </div>
         <HeroSection
           coupleNames={config.couple_names ?? 'Pavel & Olesya'}
         />

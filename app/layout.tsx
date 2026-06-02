@@ -4,7 +4,7 @@ import './globals.css'
 const coupleNames = 'Pavel & Olesya'
 const description =
   'От всей души приглашаем Вас разделить с нами этот тёплый и особенный день, наполненный любовью, счастьем и искренними эмоциями.'
-const ogImage = '/gallery/Logo_1.png'
+const ogImage = '/gallery/Logo_2.png'
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000'),
