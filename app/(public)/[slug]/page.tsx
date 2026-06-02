@@ -4,7 +4,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 
-const ogImage = '/gallery/Logo_2.png'
+const ogImage = '/gallery/Logo_2.png?v=2'
 const defaultDescription =
   'От всей души приглашаем Вас разделить с нами этот тёплый и особенный день, наполненный любовью, счастьем и искренними эмоциями.'
 
