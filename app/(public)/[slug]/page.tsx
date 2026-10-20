@@ -58,16 +58,18 @@ export default async function InvitationPage({
 }) {
   const { slug } = await params
   const supabase = await createClient()
+  // Guests are not publicly readable (RLS) — look the guest up on the server
+  // with the service role, selecting only what the page needs.
+  const adminSupabase = createAdminClient()
 
-  const { data: guest } = await supabase
+  const { data: guest } = await adminSupabase
     .from('guests')
-    .select('*')
+    .select('id, language, greeting_text')
     .eq('slug', slug)
-    .single()
+    .maybeSingle()
 
   if (!guest) notFound()
 
-  const adminSupabase = createAdminClient()
   const { data: existingRsvp } = await adminSupabase
     .from('rsvp_responses')
     .select('id')

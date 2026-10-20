@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Wedding Invite
 
-## Getting Started
+A personalized digital wedding invitation platform. Every guest gets their own invitation page with a
+personal greeting in their language, can RSVP in a couple of taps, and the couple manages the guest
+list and responses from a protected admin panel.
 
-First, run the development server:
+Built for a real wedding and used by real guests.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+
+**Guest-facing invitation (`/[slug]`)**
+
+- Personal page per guest — URL slug generated from the guest's name (with Cyrillic transliteration)
+- Bilingual: Russian / Romanian, language set per guest (`next-intl`)
+- Sections: hero, personal greeting, venue & map, dress code, day timeline, RSVP, gift wishlist,
+  Telegram group, countdown to the date
+- Mobile-first layout, Framer Motion scroll animations, background music player
+
+**RSVP**
+
+- Attending / not attending, number of guests, transfer needed
+- One response per guest — enforced both in the Server Action and by a `UNIQUE` constraint in the database
+
+**Admin panel (`/admin`)**
+
+- Protected with Supabase Auth; route guarding in Next.js middleware
+- Add / delete guests, edit personal greetings
+- View all RSVP responses
+- CSV export of responses, with a total of guests needing transfer
+
+## Tech stack
+
+| Layer     | Tools                                                                            |
+| --------- | -------------------------------------------------------------------------------- |
+| Framework | Next.js 16 (App Router, Server Components, Server Actions), React 19, TypeScript |
+| UI        | Tailwind CSS 4, shadcn/ui, Framer Motion, Lucide icons                           |
+| i18n      | next-intl                                                                        |
+| Backend   | Supabase — PostgreSQL, Auth, Row Level Security, SQL migrations                  |
+| Hosting   | Vercel                                                                           |
+
+## Project structure
+
+```
+app/
+  (public)/[slug]/   personalized invitation page
+  admin/             login + protected guests / RSVP pages
+  actions/           Server Actions (guests, RSVP)
+  api/export/rsvp/   CSV export route
+components/
+  sections/          invitation page sections
+  admin/             admin UI
+lib/
+  supabase/          browser / server / admin clients
+  i18n/              ru.json, ro.json
+supabase/migrations/ database schema
+middleware.ts        admin route protection
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Running locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Create a Supabase project and apply the SQL files in `supabase/migrations/` in order.
+2. Create `.env.local`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   NEXT_PUBLIC_SUPABASE_URL=...
+   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=...
+   SUPABASE_SERVICE_ROLE_KEY=...   # server-only, used by Server Actions
+   ```
 
-## Learn More
+3. Create an admin user in Supabase Auth, then:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   npm install
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   Admin panel: http://localhost:3000/admin
